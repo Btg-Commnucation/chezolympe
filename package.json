@@ -20,5 +20,9 @@
   "devDependencies": {
     "@volar-plugins/vetur": "^0.1.0",
     "sass": "^1.56.2"
+  },
+  "volta": {
+    "node": "18.12.1",
+    "npm": "9.2.0"
   }
 }
