@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "Gallery Modern";
+  src: url("../fonts/gallerymodern-webfont.woff2") format("woff2"),
+    url("../fonts/gallerymodern-webfont.woff") format("woff"),
+    url("../fonts/gallerymodern-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir LT 65";
+  src: url("../fonts/AvenirLT-Black.eot");
+  src: local("Avenir LT 95 Black"), local("AvenirLT-Black"),
+    url("../fonts/AvenirLT-Black.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/AvenirLT-Black.woff") format("woff"),
+    url("../fonts/AvenirLT-Black.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir LT 65";
+  src: url("../fonts/AvenirLT-Medium.eot");
+  src: local("Avenir LT 65 Medium"), local("AvenirLT-Medium"),
+    url("../fonts/AvenirLT-Medium.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/AvenirLT-Medium.woff") format("woff"),
+    url("../fonts/AvenirLT-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Avenir LT 35";
+  src: url("../fonts/AvenirLT-Light.eot");
+  src: local("Avenir LT 35 Light"), local("AvenirLT-Light"),
+    url("../fonts/AvenirLT-Light.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/AvenirLT-Light.woff") format("woff"),
+    url("../fonts/AvenirLT-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: "Avenir LT 35";
+//   font-style: normal;
+//   font-weight: var.$light;
+//   src: local("Avenir LT Std"),
+//     url(../fonts/AvenirLTStd-Light.woff) format("woff");
+// }

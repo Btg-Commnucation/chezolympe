@@ -1,0 +1,25 @@
+@use "variables" as var;
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == "tablet" {
+    @media screen and (max-width: 1000px) {
+      @content;
+    }
+  } @else if $breakpoint == "mobile" {
+    @media screen and (max-width: 700px) {
+      @content;
+    }
+  } @else if ($breakpoint == "laptop") {
+    @media screen and (max-width: 1250px) {
+      @content;
+    }
+  } @else if ($breakpoint == "mini") {
+    @media screen and (max-width: 500px) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
