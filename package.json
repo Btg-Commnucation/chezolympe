@@ -1,0 +1,24 @@
+{
+  "name": "chezolympe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch sass:css --style compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tuvedunyel/chezolympe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tuvedunyel/chezolympe/issues"
+  },
+  "homepage": "https://github.com/Tuvedunyel/chezolympe#readme",
+  "devDependencies": {
+    "@volar-plugins/vetur": "^0.1.0",
+    "sass": "^1.56.2"
+  }
+}
