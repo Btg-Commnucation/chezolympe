@@ -45,7 +45,51 @@
                                 <a href="<?= esc_url($lien_droite['url']); ?>" target="<?= esc_attr($target) ?>"><?= esc_html($lien_droite['title']); ?></a>
                             </li>
                         <?php endwhile; ?>
+                        <li class="search-container">
+                            <form role="search" method="get" id="search-header" class="search-form" action="<?php echo home_url('/'); ?>">
+                                <label id="search-label">
+                                    <span class="screen-reader-text">Rechercher</span>
+                                    <input type="search" class="search-field" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x('Search for:', 'label') ?>" />
+                                </label>
+                                <div class="submit-container">
+                                    <button type="submit" id="search-submit">
+                                        <img src="<?= get_template_directory_uri(); ?>/img/search-icons.svg" alt="Rechercher sur la site">
+                                    </button>
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                 </nav>
             <?php endif; ?>
+            <div class="mobile-menu-nav">
+                <div class="menu-nav-container">
+                    <div class="menu-nav-bar"></div>
+                    <div class="menu-nav-bar"></div>
+                    <div class="menu-nav-bar"></div>
+                </div>
+                <nav id="nav-mobile">
+                    <ul>
+                        <?php if (have_rows('menu_gauche', 'option')) :
+                            while (have_rows('menu_gauche', 'opiotn')) : the_row(); ?>
+                                <li>
+                                    <?php $lien_gauche = get_sub_field('lien');
+                                    $target = $lien_gauche['target'] ? $lien_gauche['target'] : '_self';
+                                    ?>
+                                    <a href="<?= esc_url($lien_gauche['url']); ?>" target="<?= esc_attr($target) ?>"><?= esc_html($lien_gauche['title']); ?></a>
+                                </li>
+                        <?php endwhile;
+                        endif; ?>
+                        <?php if (have_rows('menu_droite', 'option')) :
+                            while (have_rows('menu_droite', 'option')) : the_row(); ?>
+                                <li>
+                                    <?php $lien_gauche = get_sub_field('lien');
+                                    $target = $lien_gauche['target'] ? $lien_gauche['target'] : '_self';
+                                    ?>
+                                    <a href="<?= esc_url($lien_gauche['url']); ?>" target="<?= esc_attr($target) ?>"><?= esc_html($lien_gauche['title']); ?></a>
+                                </li>
+                        <?php endwhile;
+                        endif; ?>
+                    </ul>
+                </nav>
+            </div>
     </header>

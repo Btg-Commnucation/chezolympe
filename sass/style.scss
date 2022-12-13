@@ -1,3 +1,8 @@
 @use "abstracts" as var;
 @use "base";
 @use "components";
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
