@@ -20,7 +20,7 @@ function btg_register_assets()
     // wp_enqueue_script('axios', 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js', array(), 1.0);
     // wp_enqueue_script('vue', 'https://unpkg.com/vue@3.2.41/dist/vue.global.js', array(), 1.0);
     // wp_enqueue_script( 'vue', get_template_directory_uri() . '/vue.dev.js', array(), 1.0 );
-    // wp_enqueue_script('btg-script', get_template_directory_uri() . '/js/script.js', array(), 1.0, true);
+    wp_enqueue_script('btg-script', get_template_directory_uri() . '/js/script.js', array(), 1.0, true);
 }
 
 /* Disable WordPress Admin Bar for all users */

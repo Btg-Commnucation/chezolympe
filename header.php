@@ -62,7 +62,7 @@
                 </nav>
             <?php endif; ?>
             <div class="mobile-menu-nav">
-                <div class="menu-nav-container">
+                <div class="menu-nav-container" id="click-menu">
                     <div class="menu-nav-bar"></div>
                     <div class="menu-nav-bar"></div>
                     <div class="menu-nav-bar"></div>
@@ -70,7 +70,7 @@
                 <nav id="nav-mobile">
                     <ul>
                         <?php if (have_rows('menu_gauche', 'option')) :
-                            while (have_rows('menu_gauche', 'opiotn')) : the_row(); ?>
+                            while (have_rows('menu_gauche', 'option')) : the_row(); ?>
                                 <li>
                                     <?php $lien_gauche = get_sub_field('lien');
                                     $target = $lien_gauche['target'] ? $lien_gauche['target'] : '_self';

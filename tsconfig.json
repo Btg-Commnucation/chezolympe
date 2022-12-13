@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./js",
+    "target": "ES2018",
+    "noEmitOnError": true,
+    "sourceMap": true
+  },
+  "files": ["./ts/script.ts"],
+  "exclude": ["node_modules"]
+}

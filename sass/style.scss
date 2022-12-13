@@ -5,4 +5,8 @@
 body {
   position: relative;
   overflow-x: hidden;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
