@@ -27,3 +27,10 @@ function btg_register_assets()
 add_filter('show_admin_bar', '__return_false');
 
 add_action('wp_enqueue_scripts', 'btg_register_assets');
+
+register_nav_menus(array(
+    'univers' => 'Menu Univers',
+    'shop' => 'Menu Le shop',
+    'propos' => 'Menu À propos',
+    'instagram' => 'Menu Instagram'
+));

@@ -1,9 +1,5 @@
 @use "../abstracts" as var;
 
-body {
-  background: black;
-}
-
 header {
   .container-narrow {
     display: grid;
@@ -185,6 +181,11 @@ header {
   justify-content: center;
   align-items: center;
 
+  .search-container,
+  #search-header {
+    display: flex !important;
+  }
+
   @include var.breakpoint(900px) {
     display: flex;
     background: white;
@@ -242,6 +243,7 @@ header {
     align-items: center;
     list-style: none;
     height: 100%;
+    gap: 2rem;
 
     li a {
       font-family: var.$gallery;
