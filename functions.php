@@ -13,6 +13,16 @@ if (function_exists('acf_add_options_page')) {
     ));
 }
 
+add_filter('script_loader_tag', 'load_as_ES6', 10, 3);
+
+function load_as_ES6($tag, $handle, $source)
+{
+    if ('btg-script' === $handle) {
+        $tag = '<script src="' . $source . '" type="module" ></script>';
+    }
+    return $tag;
+};
+
 
 function btg_register_assets()
 {
@@ -28,9 +38,34 @@ add_filter('show_admin_bar', '__return_false');
 
 add_action('wp_enqueue_scripts', 'btg_register_assets');
 
+
+
 register_nav_menus(array(
     'univers' => 'Menu Univers',
     'shop' => 'Menu Le shop',
     'propos' => 'Menu À propos',
     'instagram' => 'Menu Instagram'
 ));
+
+add_filter('wp_nav_menu_objects', 'my_wp_nav_menu_objects', 10, 2);
+
+function my_wp_nav_menu_objects($items, $args)
+{
+
+    // loop
+    foreach ($items as &$item) {
+
+        // vars
+        $icon = get_field('rs', $item);
+
+
+        // append icon
+        if ($icon) {
+            $item->title = '<span class="screen-reader-text">' . $item->title . '</span><img src="' . $icon . '" alt="' . $item->title . '" />';
+        }
+    }
+
+
+    // return
+    return $items;
+}
