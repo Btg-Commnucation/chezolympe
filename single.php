@@ -43,6 +43,9 @@ json_encode($post_list);
 ?>
 
 <main id="single">
+    <?php $current_categories = get_the_category();
+    $current_title = get_the_title();
+    ?>
     <section class="hero-banner">
         <div class="leaf-top"></div>
         <h1>Le blog d'Olympe</h1>
@@ -76,6 +79,26 @@ json_encode($post_list);
             </aside>
         </div>
     </section>
+    <section class="also-like">
+        <div class="container">
+            <h3>Vous aimerez aussi :</h3>
+            <div class="post-same">
+                <div class="post-content__post-same" v-for="post in alsoLike">
+                    <div class="img__post">
+                        <a :href="post.permalink" v-html="post.thumbnails" :title="post.title"></a>
+                    </div>
+                    <div class="post__text">
+                        <h4>{{post.title}}</h4>
+                        <ul>
+                            <li v-for="category in post.categories">{{category.name}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php get_template_part('/parts/bottom'); ?>
 
 
     <script>
@@ -87,21 +110,40 @@ json_encode($post_list);
             data() {
                 return {
                     data: null,
+                    currentCategories: null,
+                    currentTitle: null,
                     mostReaded: null,
+                    alsoLike: null,
                 }
             },
             async mounted() {
                 await this.getData();
                 this.mostReadArticle();
+                this.setAlsoLike();
             },
             methods: {
                 getData() {
-                    this.data = <?= json_encode($post_list); ?>;
+                    this.data = <?php echo json_encode($post_list); ?>;
+                    this.currentCategories = <?php echo json_encode($current_categories); ?>;
+                    this.currentTitle = <?php echo json_encode($current_title); ?>;
                 },
                 mostReadArticle() {
                     this.mostReaded = this.data.filter((item) => {
                         return item.mostreaded === "Oui";
                     });
+                },
+                setAlsoLike() {
+                    let tempArray = []
+                    this.currentCategories.forEach((category) => {
+                        this.data.forEach(element => {
+                            element.categories.forEach((item) => {
+                                if (item.name === category.name && element.title !== this.currentTitle) {
+                                    tempArray.push(element);
+                                }
+                            })
+                        })
+                    });
+                    this.alsoLike = tempArray;
                 }
             }
         }).mount('#single')

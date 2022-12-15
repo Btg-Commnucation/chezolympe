@@ -43,6 +43,15 @@
     justify-items: center;
     align-items: start;
     column-gap: 2.2rem;
+
+    @include var.breakpoint(laptop) {
+      max-width: 85%;
+    }
+
+    @include var.breakpoint(tablet) {
+      grid-template-columns: 1fr;
+      row-gap: 2.2rem;
+    }
   }
 
   h2 {
@@ -121,6 +130,10 @@
     align-items: start;
     gap: 2rem;
 
+    @include var.breakpoint(tablet) {
+      align-items: center;
+    }
+
     .post {
       display: grid;
       grid-template-columns: 83px 1fr;
@@ -181,6 +194,100 @@
       font-weight: var.$light;
       font-family: var.$avenirLight;
       color: var.$gray;
+    }
+  }
+}
+
+.also-like {
+  width: 100%;
+  background: var.$lightOrange;
+  padding-block: 3.5rem 10.5rem;
+
+  .container {
+    max-width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @include var.breakpoint(1408px) {
+      max-width: 85%;
+    }
+  }
+
+  .post-same {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 400px);
+    gap: 6.5rem;
+    place-items: center;
+
+    @include var.breakpoint(1408px) {
+      grid-template-columns: repeat(2, 400px);
+    }
+
+    @include var.breakpoint(tablet) {
+      grid-template-columns: 400px;
+    }
+
+    @include var.breakpoint(410px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  h3 {
+    color: var.$mediumOrange;
+    font-size: 3rem;
+    font-weight: var.$black;
+    font-family: var.$avenirRegular;
+    text-align: center;
+  }
+
+  .post-content__post-same {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+
+    @include var.breakpoint(mini) {
+      flex-direction: column;
+    }
+
+    .img__post,
+    .img__post a {
+      width: 100%;
+    }
+
+    img {
+      border-radius: 38px;
+      width: 100%;
+    }
+
+    h4 {
+      font-size: 2.4rem;
+      font-weight: var.$black;
+      font-family: var.$avenirRegular;
+      color: var.$mediumOrange;
+      margin-bottom: 1.6rem;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      justify-content: center;
+      align-items: start;
+
+      @include var.breakpoint(mini) {
+        align-items: center;
+      }
+
+      li {
+        font-size: 1.8rem;
+        font-weight: var.$light;
+        font-family: var.$avenirLight;
+      }
     }
   }
 }
