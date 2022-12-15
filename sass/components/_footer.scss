@@ -12,6 +12,7 @@ footer {
     gap: 4.4rem;
     max-width: 75%;
     margin: 0 auto;
+    position: relative;
   }
 }
 
@@ -20,6 +21,21 @@ footer {
   justify-content: space-between;
   align-items: start;
   width: 100%;
+
+  @include var.breakpoint(tablet) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: start;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  @include var.breakpoint(820px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   h3 {
     font-size: 1.8rem;
@@ -52,11 +68,25 @@ footer {
 }
 
 .footer__bottom {
-  p, a {
+  p,
+  a {
     font-size: 1.4rem;
     font-weight: var.$normal;
     font-family: var.$avenirRegular;
     color: white;
     text-decoration: none;
+  }
+}
+
+.footer-leaf {
+  position: absolute;
+  width: 95px;
+  height: 192px;
+  right: 0;
+  bottom: -10%;
+  background: url("../img/footer-leaf.svg") no-repeat;
+
+  @include var.breakpoint(mobile) {
+    display: none;
   }
 }

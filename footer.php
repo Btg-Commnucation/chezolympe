@@ -48,6 +48,7 @@
         <div class="footer__bottom">
             <p>Réalisation : <a href="https://www.btg-communication.fr" target="_blank">btg communication</a></p>
         </div>
+        <div class="footer-leaf"></div>
     </div>
 </footer>
 
