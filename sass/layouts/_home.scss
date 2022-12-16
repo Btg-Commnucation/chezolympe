@@ -193,6 +193,29 @@
 
       .prev {
         margin-right: 1.7rem;
+        width: 44px;
+        height: 44px;
+
+        button {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 1px solid var.$mediumOrange;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: transparent;
+          transition: 0.3s ease-in-out;
+
+          &:hover {
+            background: var.$lightOrange;
+          }
+        }
+
+        img {
+          width: 12px;
+          height: 23px;
+        }
       }
 
       .page__pagination:not(:last-of-type) {
@@ -219,6 +242,29 @@
 
       .next {
         margin-left: 1.7rem;
+        width: 44px;
+        height: 44px;
+        button {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          border: 1px solid var.$mediumOrange;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: transparent;
+          transition: 0.3s ease-in-out;
+
+          &:hover {
+            background: var.$lightOrange;
+          }
+        }
+
+        img {
+          width: 12px;
+          height: 23px;
+          transform: rotate(180deg);
+        }
       }
     }
   }

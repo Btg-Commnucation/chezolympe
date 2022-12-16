@@ -1,0 +1,167 @@
+@use "../abstracts" as var;
+
+#conseils {
+  .hero-banner {
+    background: url("../img/page-banner.jpg") no-repeat;
+    background-size: 100% 459px;
+    height: 459px;
+
+    @include var.breakpoint(laptop) {
+      background-size: cover;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    figure,
+    img,
+    picture {
+      width: 33px;
+      height: 33px;
+    }
+
+    .wp-block-image {
+      margin-block: 1.6rem 1.2rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+      font-weight: var.$light;
+      font-family: var.$avenirLight;
+      max-width: 780px;
+    }
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .conseil {
+      background: transparent;
+      width: 100%;
+      padding-block: 4.9rem 7.3rem;
+
+      &:nth-of-type(2n) {
+        background: var.$lightOrange;
+
+        .content .illustration {
+          right: unset !important;
+          left: -15%;
+        }
+      }
+    }
+
+    .container {
+      max-width: 75%;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      @include var.breakpoint(tablet) {
+        max-width: 90%;
+      }
+
+      h2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 4rem;
+        color: black;
+        font-weight: 400;
+        font-family: var.$gallery;
+      }
+
+      .content {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        max-width: 780px;
+
+        .illustration {
+          position: absolute;
+          width: auto;
+          right: -15%;
+
+          @include var.breakpoint(tablet) {
+            display: none;
+          }
+        }
+
+        .text-container {
+          p,
+          strong,
+          li {
+            font-size: 1.8rem;
+            color: var.$gray;
+            text-align: center;
+          }
+
+          strong {
+            font-weight: var.$black;
+            font-family: var.$avenirRegular;
+          }
+
+          p {
+            font-weight: var.$light;
+            font-family: var.$avenirLight;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom__leshop {
+    .container {
+      max-width: 75%;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.8rem;
+
+      @include var.breakpoint(tablet) {
+        max-width: 90%;
+      }
+
+      p {
+        font-size: 1.8rem;
+        font-weight: var.$light;
+        font-family: var.$avenirLight;
+        color: var.$mediumOrange;
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+        background: white;
+        border: 1px solid var.$mediumOrange;
+        border-radius: 10px;
+        padding: 1.6rem 9.9rem;
+        font-size: 2.7rem;
+        font-weight: var.$light;
+        font-family: var.$avenirLight;
+        color: var.$mediumOrange;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+
+        &:hover {
+          background: var.$mediumOrange;
+          color: white;
+        }
+      }
+    }
+  }
+}

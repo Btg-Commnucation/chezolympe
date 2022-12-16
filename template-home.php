@@ -82,13 +82,19 @@ json_encode($post_list);
             <section class="pagination">
                 <ul>
                     <li class="prev">
-                        <button @click="handlePageSwitch('prev')">Prev</button>
+                        <button @click="handlePageSwitch('prev')">
+                            <span class="screen-reader-text">Page précédente</span>
+                            <img src="<?= get_template_directory_uri() ?>/img/arrow-blog.svg" alt="Flèche pour la page précédente">
+                        </button>
                     </li>
                     <li v-for="(page, index) in pagination" :index="index" :class="currentPage === page ? 'page__pagination active' : 'page__pagination'">
                         <button @click="handlePagination(page)">{{page}}</button>
                     </li>
                     <li class="next">
-                        <button @click="handlePageSwitch('next')">Next</button>
+                        <button @click="handlePageSwitch('next')">
+                            <span class="screen-reader-text">Page suivante</span>
+                            <img src="<?= get_template_directory_uri(); ?>/img/arrow-blog.svg" alt="Flèche pour la page suivante">
+                        </button>
                     </li>
                 </ul>
             </section>
@@ -111,10 +117,10 @@ json_encode($post_list);
                     selectedCategory: '',
                     loading: false,
                     pagination: [],
-                    perPage: 2,
+                    perPage: 6,
                     currentPage: 1,
                     a: 0,
-                    b: 2,
+                    b: 6,
                     filterPost: []
                 }
             },
