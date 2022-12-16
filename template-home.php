@@ -50,20 +50,21 @@ json_encode($post_list);
         <div class="leaf-top"></div>
         <h1>Le blog d'Olympe</h1>
     </section>
-    <article>
+    <article v-if="loading">
         <div class="container">
             <section class="sort-by">
-                <ul>
+                <button v-if="mobile" class="show-sort" @click="showSort = !showSort">{{showSort ? 'Cacher les filtres' : 'Ouvrir les filtres'}}</button>
+                <ul :class="showSort ? '' : 'hide'">
                     <li>
-                        <button>Tout</button>
+                        <button @click="filterCategory('')">Tout</button>
                     </li>
                     <li v-for="(category, index) in categories" :index="index">
-                        <button>{{category}}</button>
+                        <button @click="filterCategory(category)">{{category}}</button>
                     </li>
                 </ul>
             </section>
             <section class="post__article">
-                <div class="post-home" v-for="(post, index) in data" :index="index">
+                <div class="post-home" v-for="(post, index) in filteredCategory.slice(a, b)" :index="index">
                     <div class="post-home__image">
                         <a :href="post.permalink" v-html="post.thumbnails"></a>
                     </div>
@@ -78,6 +79,19 @@ json_encode($post_list);
                     </div>
                 </div>
             </section>
+            <section class="pagination">
+                <ul>
+                    <li class="prev">
+                        <button @click="handlePageSwitch('prev')">Prev</button>
+                    </li>
+                    <li v-for="(page, index) in pagination" :index="index" :class="currentPage === page ? 'page__pagination active' : 'page__pagination'">
+                        <button @click="handlePagination(page)">{{page}}</button>
+                    </li>
+                    <li class="next">
+                        <button @click="handlePageSwitch('next')">Next</button>
+                    </li>
+                </ul>
+            </section>
         </div>
     </article>
 
@@ -90,15 +104,58 @@ json_encode($post_list);
             data() {
                 return {
                     data: null,
-                    categories: []
+                    categories: [],
+                    showSort: false,
+                    mobile: false,
+                    windowWidth: null,
+                    selectedCategory: '',
+                    loading: false,
+                    pagination: [],
+                    perPage: 2,
+                    currentPage: 1,
+                    a: 0,
+                    b: 2,
+                    filterPost: []
+                }
+            },
+            computed: {
+                filteredCategory() {
+                    this.filterPost = [];
+                    return this.data.filter(post => {
+                        return post.categories.some(category => {
+                            if (this.selectedCategory === '') {
+                                this.filterPost.push(post)
+                                this.handlePaginationCalculator;
+                                return category
+                            } else if (category.name === this.selectedCategory) {
+                                this.filterPost.push(post)
+                                this.handlePaginationCalculator;
+                                return category
+                            }
+                        })
+                    })
+                },
+                handlePaginationCalculator() {
+                    this.pagination = [];
+                    for (let i = 1; i <= this.filterPost.length; i++) {
+                        console.log(Math.ceil(i / this.perPage))
+                        this.pagination.push(Math.ceil(i / this.perPage));
+                    }
+                    this.pagination = [...new Set(this.pagination)]
                 }
             },
             async mounted() {
                 await this.getData();
+                if (this.windowWidth <= 600) {
+                    this.mobile = true;
+                }
+                this.loading = true;
             },
             methods: {
                 getData() {
+                    this.windowWidth = window.innerWidth;
                     this.data = <?php echo json_encode($post_list); ?>;
+                    this.filterPost = this.data;
                     this.data.forEach(post => {
                         post.categories.forEach(category => {
                             if (!this.categories.includes(category.name)) {
@@ -107,6 +164,35 @@ json_encode($post_list);
                         })
                         this.categories = [...new Set(this.categories)]
                     })
+                    this.handlePaginationCalculator;
+                },
+                filterCategory(category) {
+                    this.selectedCategory = category;
+                },
+                handlePagination(pageNumber) {
+                    if (this.currentPage > pageNumber) {
+                        this.a = this.a - this.perPage * (this.currentPage - pageNumber);
+                        this.b = this.b - this.perPage * (this.currentPage - pageNumber);
+                    } else if (this.currentPage < pageNumber) {
+                        this.a = this.a + this.perPage * (pageNumber - this.currentPage);
+                        this.b = this.b + this.perPage * (pageNumber - this.currentPage);
+                    }
+                    this.currentPage = pageNumber;
+                },
+                handlePageSwitch(direction) {
+                    if (direction === 'next') {
+                        if (this.currentPage < this.pagination.length) {
+                            this.a = this.a + this.perPage;
+                            this.b = this.b + this.perPage;
+                            this.currentPage++;
+                        }
+                    } else if (direction === 'prev') {
+                        if (this.currentPage > 1) {
+                            this.a = this.a - this.perPage;
+                            this.b = this.b - this.perPage;
+                            this.currentPage--;
+                        }
+                    }
                 }
             }
         }).mount('#home')
