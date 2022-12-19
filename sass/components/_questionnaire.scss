@@ -1,0 +1,128 @@
+@use "../abstracts" as var;
+
+#questionnaire {
+  .hero-banner {
+    background: url("../img/page-banner.jpg") no-repeat;
+    background-size: 100% 359px;
+    height: 359px;
+    position: relative;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 75%;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 4.6rem;
+      font-weight: 400;
+      font-family: var.$gallery;
+      color: white;
+    }
+
+    img {
+      width: 33px;
+      height: 33px;
+      margin-bottom: 1.2rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+      font-weight: var.$light;
+      font-family: var.$avenirLight;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .leaf {
+      width: 216px;
+      height: 245px;
+      position: absolute;
+      top: 30%;
+      left: -2%;
+
+      img {
+        width: 216px;
+        height: 245px;
+      }
+    }
+  }
+
+  article {
+    margin-top: 4.3rem;
+    .container {
+      max-width: 75%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  h2 {
+    font-size: 4rem;
+    font-weight: 400;
+    font-family: var.$gallery;
+    margin-bottom: 3.6rem;
+  }
+
+  .familles-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.8rem;
+
+    button {
+      background: transparent;
+      border: 1px solid var.$gray;
+      border-radius: 10px;
+      font-size: 1.9rem;
+      font-weight: var.$normal;
+      font-family: var.$avenirRegular;
+      color: var.$gray;
+      padding: 2rem 2.5rem;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        background: var.$mediumOrange;
+        color: white;
+        border-color: var.$mediumOrange;
+      }
+    }
+  }
+
+  .familles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .famille {
+      background: var.$mediumOrange;
+      color: white;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 2.9rem;
+      padding: 5.3rem 8.4rem;
+      border-radius: 10px;
+      width: 100%;
+
+      img {
+        max-width: 81px;
+      }
+
+      p {
+        font-size: 1.9rem;
+        font-weight: var.$normal;
+        font-family: var.$avenirRegular;
+        max-width: 847px;
+      }
+    }
+  }
+}
