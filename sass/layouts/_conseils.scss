@@ -52,7 +52,7 @@
 
         .content .illustration {
           right: unset !important;
-          left: -15%;
+          left: -25%;
         }
       }
     }
@@ -89,13 +89,18 @@
         position: relative;
         max-width: 780px;
 
+        @include var.breakpoint(1197px) {
+          flex-direction: column-reverse;
+          gap: 2rem;
+        }
+
         .illustration {
           position: absolute;
           width: auto;
-          right: -15%;
+          right: -25%;
 
-          @include var.breakpoint(tablet) {
-            display: none;
+          @include var.breakpoint(1197px) {
+            position: initial;
           }
         }
 
