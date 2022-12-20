@@ -51,6 +51,9 @@ json_encode($post_list);
         <h1>Le blog d'Olympe</h1>
     </section>
     <section class="content">
+        <?php if (function_exists('yoast_breadcrumb')) {
+            yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
+        } ?>
         <div class="container">
             <article>
                 <h2><?php the_title(); ?></h2>
