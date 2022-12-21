@@ -5,6 +5,33 @@
 
 get_header();
 
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+    CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/products?display=full&output_format=JSON",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CUSTOMREQUEST => "GET",
+]);
+
+$response = curl_exec($curl);
+$err = curl_error($curl);
+
+curl_close($curl);
+
+$request = curl_init();
+
+curl_setopt_array($request, [
+    CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/product_feature_values?display=full&output_format=JSON",
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_CUSTOMREQUEST => "GET",
+]);
+
+$newResult = curl_exec($request);
+$newErr = curl_error($request);
+
+curl_close($request);
+
+
 class Question
 {
     public $question;
@@ -77,8 +104,8 @@ endif;
     <template v-if="!isLoading">
         <section class="question-part">
             <div class="container">
-                <h2>Questionnaire</h2>
-                <div class="questions-container">
+                <h2>{{ allAnswers ? 'Voici des produits qui te correspondent' : 'Questionnaire'}}</h2>
+                <div class="questions-container" v-if="!allAnswers">
                     <div class="question" v-for="question in data.slice(sliceA, sliceB)">
                         <h3>{{ question.question  }}</h3>
                         <form action="" class="choices">
@@ -89,6 +116,22 @@ endif;
                         </form>
                     </div>
                     <button class="validate" @click="handleClick()">Valider</button>
+                </div>
+                <div class="result" v-if="allAnswers">
+                    <div class="loading" v-if="!responseIsReady">
+                        <strong>Nous recherchons les meilleurs produit pour vous</strong>
+                        <p>Merci de patienter quelques secondes !</p>
+                        <div class="lds-ripple">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="product-list" v-if="responseIsReady">
+                        <p class="texte-return-product">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
+                        <ul class="product">
+                            <li v-for="(product, index) in products">{{product.name}}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -109,6 +152,11 @@ endif;
                     isLoading: true,
                     result: null,
                     results: [],
+                    apiResponse: null,
+                    featureValues: [],
+                    allAnswers: false,
+                    responseIsReady: false,
+                    products: null
                 }
             },
             async mounted() {
@@ -117,31 +165,60 @@ endif;
             },
             methods: {
                 getData() {
-                    let options = {
-                        method: 'GET',
-                        url: 'https://leshop-chezolympe.btg-dev.com/api',
-                        params: {
-                            output_format: 'JSON'
-                        },
-                        headers: {
-                            cookie: 'PrestaShop-754200b4a6d6439be364664671f88aa3=def502003afe9362afac3b400d9af117856c8e117d7c3eaf133a4cf9be2166b42750dca255f1ff86425329c72a5c5cded545ea067f1625a8e9051eab090151a23645f269da7ecc07974cee9fb3d74c59109659b0735e2f37f88142d82568addc5d934775dceab6ec3fc6e54b8515359ff765c73ee955e3ea56ed080bd141a7e67520a0d7eff5fb135e20924e04d80b857362cdd59865aedf995300ceed41cfa0bb70660da8c0c541d514c901f78d990b798a1a2cec9d49afc6f8beed546314181fb01cde68786eac55677f13caeeecab171ef800546b6c5c39',
-                            Authorization: `Basic WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3`
-                        }
-                    };
                     this.data = <?= json_encode($question_list); ?>;
-                    axios.request(options).then(data => {
-                        console.log(data)
-                    }).catch(err => {
-                        console.log(err)
-                    })
+                    this.apiResponse = <?= $response ? json_encode($response) : json_encode($err); ?>;
+                    this.apiResponse = JSON.parse(this.apiResponse);
+                    this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
+                    this.featureValues = JSON.parse(this.featureValues);
                 },
-                handleClick() {
+                async handleClick() {
                     this.results.push(this.result);
                     this.result = null;
                     if (this.sliceB < this.data.length) {
                         this.sliceA = this.sliceA + this.step;
                         this.sliceB = this.sliceB + this.step;
+                    } else if (this.sliceB === this.data.length) {
+                        this.allAnswers = true;
+                        await this.setListFeature();
+                        this.setProducts();
+                        setTimeout(() => {
+                            this.responseIsReady = true;
+                        }, 1500)
                     }
+                },
+                setListFeature() {
+                    let tempArray = [];
+                    for (const element of this.results) {
+                        tempArray.push(element.replaceAll('-', ' '));
+                    }
+                    this.results = tempArray;
+                    let arrayIdValues = [];
+                    for (const element of this.featureValues.product_feature_values) {
+                        for (const value of this.results) {
+                            if (value.toLowerCase() !== 'aucune' && value === element.value.toLowerCase()) {
+                                arrayIdValues.push({
+                                    id: element.id,
+                                    name: element.value
+                                });
+                            }
+                        }
+                    }
+                },
+                setProducts() {
+                    let tempArray = [];
+                    for (const element of this.apiResponse.products) {
+                        if (element.associations.product_features) {
+                            for (const item of element.associations.product_features) {
+                                for (const value of this.featureValues.product_feature_values) {
+                                    if (item.id_feature_value.includes(value.id)) {
+                                        tempArray.push(element);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    this.products = [...new Set(tempArray)];
+                    console.log(this.products);
                 }
             }
         }).mount('#questionnaire');
