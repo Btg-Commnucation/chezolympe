@@ -83,7 +83,7 @@ endif;
                         <h3>{{ question.question  }}</h3>
                         <form action="" class="choices">
                             <div class="choice" v-for="(answer, index) in question.answers">
-                                <input type="radio" :id="question.value[index]" :name="question.question" :value="question.value[index]" v-model="answer">
+                                <input type="radio" :id="question.value[index]" :name="question.question" :value="question.value[index]" v-model="result">
                                 <label :for="question.value[index]">{{ answer }}</label>
                             </div>
                         </form>
@@ -107,7 +107,8 @@ endif;
                     sliceB: 1,
                     step: 1,
                     isLoading: true,
-                    answer: null,
+                    result: null,
+                    results: [],
                 }
             },
             async mounted() {
@@ -116,15 +117,37 @@ endif;
             },
             methods: {
                 getData() {
+                    let options = {
+                        method: 'GET',
+                        url: 'https://leshop-chezolympe.btg-dev.com/api',
+                        params: {
+                            output_format: 'JSON'
+                        },
+                        headers: {
+                            cookie: 'PrestaShop-754200b4a6d6439be364664671f88aa3=def502003afe9362afac3b400d9af117856c8e117d7c3eaf133a4cf9be2166b42750dca255f1ff86425329c72a5c5cded545ea067f1625a8e9051eab090151a23645f269da7ecc07974cee9fb3d74c59109659b0735e2f37f88142d82568addc5d934775dceab6ec3fc6e54b8515359ff765c73ee955e3ea56ed080bd141a7e67520a0d7eff5fb135e20924e04d80b857362cdd59865aedf995300ceed41cfa0bb70660da8c0c541d514c901f78d990b798a1a2cec9d49afc6f8beed546314181fb01cde68786eac55677f13caeeecab171ef800546b6c5c39',
+                            Authorization: `Basic WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3`
+                        }
+                    };
                     this.data = <?= json_encode($question_list); ?>;
+                    axios.request(options).then(data => {
+                        console.log(data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
                 },
                 handleClick() {
-                    console.log(this.answer);
+                    this.results.push(this.result);
+                    this.result = null;
+                    if (this.sliceB < this.data.length) {
+                        this.sliceA = this.sliceA + this.step;
+                        this.sliceB = this.sliceB + this.step;
+                    }
                 }
             }
         }).mount('#questionnaire');
     </script>
 </main>
+
 
 <?php
 get_template_part('parts/bottom');
