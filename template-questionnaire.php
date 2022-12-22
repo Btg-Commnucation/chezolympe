@@ -152,9 +152,15 @@ endif;
                         <p class="texte-return-product">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
                         <ul class="product">
                             <li v-for="(product, index) in products">
-                                <div class="product-image">
-                                    <img :src="setUrl(imageIds[index].id, imageIds[index].imageId)" :alt="product.name">
+                                <div class="product-container">
+                                    <a :href="setProductLink(index)" target="_blank" title="Se rendre sur la page du produit" class="product-image">
+                                        <img :src="setUrl(imageIds[index].id, imageIds[index].imageId)" :alt="product.name">
+                                    </a>
+                                    <div class="product-content">
+                                        <h4><a :href="setProductLink(index)" target="_blank">{{ product.name }}</a></h4>
+                                    </div>
                                 </div>
+                                <strong class="product-price">{{product.price.slice(0, 5)}} €</strong>
                             </li>
                         </ul>
                     </div>
@@ -185,7 +191,8 @@ endif;
                     products: null,
                     image: null,
                     imageIds: [],
-                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@'
+                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@',
+                    productsLink: []
                 }
             },
             async mounted() {
@@ -252,7 +259,21 @@ endif;
                 },
                 setImageIds() {
                     let tempArray = [];
+                    let tempLink = [];
                     for (const product of this.products) {
+                        if (product.product_type === "combinations") {
+                            tempLink.push({
+                                id: product.id,
+                                link: product.link_rewrite,
+                                combination: product.associations.combinations[0]
+                            })
+                        } else {
+                            tempLink.push({
+                                id: product.id,
+                                link: product.link_rewrite
+                            })
+                        }
+                        this.productsLink = [...new Set(tempLink)]
                         for (const image of this.image) {
                             if (product.id === Number(image.image['@attributes'].id)) {
                                 tempArray.push({
@@ -266,6 +287,13 @@ endif;
                 },
                 setUrl(id, imageId) {
                     return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(id)}/${Number(imageId)}`;
+                },
+                setProductLink(index) {
+                    if (this.productsLink[index].combination) {
+                        return `https://leshop-chezolympe.btg-dev.com/${this.productsLink[index].id}-${this.productsLink[index].combination.id}-${this.productsLink[index].link}.html`;
+                    } else {
+                        return `https://leshop-chezolympe.btg-dev.com/${this.productsLink[index].id}-${this.productsLink[index].link}.html`;
+                    }
                 }
             }
         }).mount('#questionnaire');
