@@ -17,6 +17,28 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 
 curl_close($curl);
+$products_images = [];
+$products = is_array(json_decode($response)->products) ? json_decode($response)->products : array(json_decode($reponse)->products);
+if ($products) :
+    foreach ($products as $product) {
+        $image_request = curl_init();
+        curl_setopt_array($image_request, [
+            CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/images/products/" . $product->id . "?display=full",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => "GET",
+        ]);
+        $image_response = curl_exec($image_request);
+        $image_err = curl_error($image_request);
+
+        if ($image_response) {
+            $products_images[] = simplexml_load_string($image_response);
+        } else {
+            var_dump($image_err);
+        }
+    }
+
+
+endif;
 
 $request = curl_init();
 
@@ -129,7 +151,11 @@ endif;
                     <div class="product-list" v-if="responseIsReady">
                         <p class="texte-return-product">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
                         <ul class="product">
-                            <li v-for="(product, index) in products">{{product.name}}</li>
+                            <li v-for="(product, index) in products">
+                                <div class="product-image">
+                                    <img :src="setUrl(imageIds[index].id, imageIds[index].imageId)" :alt="product.name">
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -156,7 +182,10 @@ endif;
                     featureValues: [],
                     allAnswers: false,
                     responseIsReady: false,
-                    products: null
+                    products: null,
+                    image: null,
+                    imageIds: [],
+                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@'
                 }
             },
             async mounted() {
@@ -166,6 +195,7 @@ endif;
             methods: {
                 getData() {
                     this.data = <?= json_encode($question_list); ?>;
+                    this.image = <?= json_encode($products_images); ?>;
                     this.apiResponse = <?= $response ? json_encode($response) : json_encode($err); ?>;
                     this.apiResponse = JSON.parse(this.apiResponse);
                     this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
@@ -218,7 +248,24 @@ endif;
                         }
                     }
                     this.products = [...new Set(tempArray)];
-                    console.log(this.products);
+                    this.setImageIds();
+                },
+                setImageIds() {
+                    let tempArray = [];
+                    for (const product of this.products) {
+                        for (const image of this.image) {
+                            if (product.id === Number(image.image['@attributes'].id)) {
+                                tempArray.push({
+                                    id: image.image['@attributes'].id,
+                                    imageId: image.image.declination[0]['@attributes'].id
+                                })
+                            }
+                        }
+                    }
+                    this.imageIds = [...new Set(tempArray)];
+                },
+                setUrl(id, imageId) {
+                    return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(id)}/${Number(imageId)}`;
                 }
             }
         }).mount('#questionnaire');
