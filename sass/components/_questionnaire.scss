@@ -400,4 +400,72 @@
     margin-top: 2.3rem;
     display: flow-root;
   }
+
+  .no-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h5 {
+      font-size: 2.5rem;
+      font-weight: 400;
+      font-family: var.$gallery;
+      text-align: center;
+      color: var.$gray;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.8rem;
+      text-align: center;
+      font-weight: var.$light;
+      font-family: var.$avenirLight;
+      color: var.$gray;
+    }
+
+    .button {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+
+      a {
+        font-size: 1.8rem;
+        font-weight: var.$light;
+        font-family: var.$avenirLight;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+
+        &.btn-accueil {
+          background: var.$mediumOrange;
+          color: white;
+          border: 1px solid var.$mediumOrange;
+          border-radius: 10px;
+          padding: 1rem 2rem;
+
+          &:hover {
+            background: transparent;
+            border-color: var.$gray;
+            color: var.$gray;
+          }
+        }
+
+        &.btn-shop {
+          background: transparent;
+          border: 1px solid var.$gray;
+          border-radius: 10px;
+          padding: 1rem 2rem;
+          color: var.$gray;
+
+          &:hover {
+            background: var.$mediumOrange;
+            color: white;
+            border-color: var.$mediumOrange;
+          }
+        }
+      }
+    }
+  }
 }

@@ -150,7 +150,7 @@ endif;
                     </div>
                     <div class="product-list" v-if="responseIsReady">
                         <p class="texte-return-product">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
-                        <ul class="product">
+                        <ul class="product" v-if="products.length > 0">
                             <li v-for="(product, index) in products">
                                 <div class="product-container">
                                     <a :href="setProductLink(index)" target="_blank" title="Se rendre sur la page du produit" class="product-image">
@@ -163,6 +163,20 @@ endif;
                                 <strong class="product-price">{{product.price.slice(0, 5)}} €</strong>
                             </li>
                         </ul>
+                        <div class="no-result" v-else>
+                            <h5>Oups... Désolé</h5>
+                            <p>Il semblerait qu'aucun produit ne correspond à votre recherche, vous pouvez toujours venir visiter notre boutique ou repassez plus tard</p>
+                            <div class="button">
+                                <a class="btn-accueil" href="<?= home_url('/') ?>">Accueil</a>
+                                <?php $le_shop = get_field('le_shop', 'option');
+                                $le_shop_target = $le_shop['target'] ? $le_shop['target'] : '_self';
+                                if ($le_shop) : ?>
+                                    <a class="btn-shop" href="<?= esc_url($le_shop['url']); ?>" target="<?= esc_attr($le_shop_target) ?>">
+                                        <?= esc_html($le_shop['title']); ?>
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -192,7 +206,8 @@ endif;
                     image: null,
                     imageIds: [],
                     key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@',
-                    productsLink: []
+                    productsLink: [],
+                    productMatchingValues: [],
                 }
             },
             async mounted() {
@@ -232,29 +247,27 @@ endif;
                     let arrayIdValues = [];
                     for (const element of this.featureValues.product_feature_values) {
                         for (const value of this.results) {
-                            if (value.toLowerCase() !== 'aucune' && value === element.value.toLowerCase()) {
+                            if (value === element.value.toLowerCase()) {
                                 arrayIdValues.push({
-                                    id: element.id,
+                                    id: String(element.id),
                                     name: element.value
                                 });
                             }
                         }
                     }
+                    this.productMatchingValues = [...new Set(arrayIdValues)]
                 },
                 setProducts() {
                     let tempArray = [];
                     for (const element of this.apiResponse.products) {
                         if (element.associations.product_features) {
-                            for (const item of element.associations.product_features) {
-                                for (const value of this.featureValues.product_feature_values) {
-                                    if (item.id_feature_value.includes(value.id)) {
-                                        tempArray.push(element);
-                                    }
-                                }
+                            if (this.productMatchingValues.every(value => element.associations.product_features.some(element => element.id_feature_value === value.id))) {
+                                tempArray.push(element);
                             }
+
                         }
                     }
-                    this.products = [...new Set(tempArray)];
+                    this.products = tempArray;
                     this.setImageIds();
                 },
                 setImageIds() {
