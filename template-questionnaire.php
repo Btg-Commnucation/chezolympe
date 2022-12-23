@@ -164,8 +164,8 @@ endif;
                             </li>
                         </ul>
                         <div class="no-result" v-else>
-                            <h5>Oups... Désolé</h5>
-                            <p>Il semblerait qu'aucun produit ne correspond à votre recherche, vous pouvez toujours venir visiter notre boutique ou repassez plus tard</p>
+                            <h5><?php the_field('titre_aucun_article'); ?></h5>
+                            <p><?php the_field('texte_aucun_article'); ?></p>
                             <div class="button">
                                 <a class="btn-accueil" href="<?= home_url('/') ?>">Accueil</a>
                                 <?php $le_shop = get_field('le_shop', 'option');
