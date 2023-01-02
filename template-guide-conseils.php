@@ -33,6 +33,7 @@ get_header();
     </section>
     <article>
         <div class="container-slider">
+            <img src="<?= get_template_directory_uri(); ?>/img/leaf-rotate.svg" alt="Feuille retournée" class="feuille-top">
             <h3><?php the_field('titre_slider'); ?></h3>
             <p><?php the_field('texte_slider'); ?></p>
             <?php if (have_rows('slider')) : ?>

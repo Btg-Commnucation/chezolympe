@@ -114,6 +114,14 @@
   article {
     background: black;
     padding-block: 4.3rem 2.3rem;
+    position: relative;
+    z-index: 1;
+
+    .feuille-top {
+      position: absolute;
+      right: -15%;
+      top: -3%;
+    }
   }
 
   .container-slider {
