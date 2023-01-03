@@ -1,0 +1,104 @@
+@use "../abstracts" as var;
+
+#front-page {
+  .hero-banner {
+    background: black;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: 0;
+    position: relative;
+
+    .leaf-hero {
+      background: url("../img/top-leaf.svg") no-repeat;
+      width: 216px;
+      height: 245px;
+      position: absolute;
+      left: -2%;
+      top: 5%;
+    }
+  }
+
+  .separator {
+    position: absolute;
+    z-index: 2;
+    bottom: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+
+    .line {
+      width: 393px;
+      background: white;
+      height: 4px;
+      border-radius: 10px;
+    }
+
+    .dot {
+      background: white;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+  }
+
+  .left-side {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slogan__container-left {
+    position: relative;
+    height: fit-content;
+    width: fit-content;
+
+    img {
+      position: absolute;
+      width: 33px;
+      height: 33px;
+      bottom: 10%;
+      right: -5%;
+    }
+  }
+
+  .container-left {
+    margin: 0 auto;
+    max-width: 66%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    h2 {
+      font-weight: 400;
+      font-family: var.$gallery;
+      color: white;
+      margin-top: 0;
+    }
+
+    .content {
+      margin-block: 0;
+    }
+  }
+
+  h1 {
+    font-size: 4.6rem;
+    color: white;
+    font-weight: 400;
+    font-family: var.$gallery;
+    margin-bottom: 0;
+  }
+
+  .right-side {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+}
