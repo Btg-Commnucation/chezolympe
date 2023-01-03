@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <main id="front-page">
+    <div id="white-opener"></div>
     <section class="hero-banner">
         <div class="leaf-hero"></div>
         <div class="left-side">

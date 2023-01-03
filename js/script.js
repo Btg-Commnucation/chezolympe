@@ -1,12 +1,28 @@
 import { handleMenu } from "./nav.js";
 import { handleFamily } from "./questionnaire.js";
+import { animFrontPage } from "./anim.js";
 
 const splideSelector = document.querySelector(".splide");
+const frontPage = document.getElementById("front-page");
+const whiteOpener = document.getElementById("white-opener");
 
 const navMenu = document.getElementById("nav-mobile");
 const clickMenu = document.getElementById("click-menu");
 const btn = document.querySelectorAll(".btn");
 const family = document.querySelectorAll(".famille");
+
+if (frontPage && whiteOpener) {
+  document.body.classList.add("no-scroll");
+  document.getElementById("left-nav").classList.add("hide");
+  document.getElementById("right-nav").classList.add("hide");
+  document
+    .querySelector("header > .container-narrow > #logo")
+    .classList.add("transform");
+  document
+    .querySelector("header > .container-narrow > #logo")
+    .classList.add("no-background");
+  animFrontPage(whiteOpener);
+}
 
 if (btn && family) {
   btn.forEach((item) => {
