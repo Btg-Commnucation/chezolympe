@@ -1,6 +1,8 @@
 @use "../abstracts" as var;
 
 header {
+  position: relative;
+  z-index: 100;
   .container-narrow {
     display: grid;
     grid-template-columns: 1fr 212px 1fr;
@@ -34,6 +36,7 @@ header {
 
   &.transform {
     transform: scale(2) translateY(30%);
+    z-index: 100;
   }
 
   &.no-background {
