@@ -32,8 +32,6 @@ if ($products) :
 
         if ($image_response) {
             $products_images[] = simplexml_load_string($image_response);
-        } else {
-            var_dump($image_err);
         }
     }
 

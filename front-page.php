@@ -22,6 +22,11 @@
             <img src="<?= $image_haut_page ? esc_url($image_haut_page['url']) : get_template_directory_uri() . '/img/Photo-top.jpg' ?>" alt="<?= $image_haut_page ? esc_attr($image_haut_page['alt']) : 'Photo d\'une femme se cachant la poitrine' ?>">
         </div>
     </section>
+    <?php get_template_part('parts/shop-categories');
+    get_template_part('parts/top-commu');
+    ?>
 </main>
 
-<?php get_footer(); ?>
+<?php
+get_template_part('parts/bottom');
+get_footer(); ?>
