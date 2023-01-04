@@ -1,6 +1,15 @@
 @use "../abstracts" as var;
 
 #page-olympe {
+  p {
+    font-weight: var.$light;
+    font-family: var.$avenirLight;
+
+    strong {
+      font-weight: var.$black;
+      font-family: var.$avenirRegular;
+    }
+  }
   .hero-banner {
     min-height: 360px;
     background: url("../img/hero-page.jpg") no-repeat;

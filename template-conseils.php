@@ -13,7 +13,8 @@ get_header();
         </div>
     </section>
     <?php if (have_rows('conseils')) : ?>
-        <article>
+        <article class="conseils-article">
+            <img src="<?= get_template_directory_uri() ?>/img/leaf-black.svg" alt="Feuille noir" class="feuille-noire">
             <?php while (have_rows('conseils')) : the_row(); ?>
                 <div class="conseil">
                     <div class="container">

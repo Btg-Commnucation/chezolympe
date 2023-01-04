@@ -5,9 +5,14 @@
 
 body {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 
   &.no-scroll {
     overflow: hidden;
   }
+}
+
+main,
+header {
+  overflow-x: clip;
 }

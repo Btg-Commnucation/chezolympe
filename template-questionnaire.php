@@ -17,26 +17,6 @@ $response = curl_exec($curl);
 $err = curl_error($curl);
 
 curl_close($curl);
-$products_images = [];
-$products = is_array(json_decode($response)->products) ? json_decode($response)->products : array(json_decode($reponse)->products);
-if ($products) :
-    foreach ($products as $product) {
-        $image_request = curl_init();
-        curl_setopt_array($image_request, [
-            CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/images/products/" . $product->id . "?display=full",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => "GET",
-        ]);
-        $image_response = curl_exec($image_request);
-        $image_err = curl_error($image_request);
-
-        if ($image_response) {
-            $products_images[] = simplexml_load_string($image_response);
-        }
-    }
-
-
-endif;
 
 $request = curl_init();
 
@@ -151,11 +131,11 @@ endif;
                         <ul class="product" v-if="products.length > 0">
                             <li v-for="(product, index) in products">
                                 <div class="product-container">
-                                    <a :href="setProductLink(index)" target="_blank" title="Se rendre sur la page du produit" class="product-image">
-                                        <img :src="setUrl(imageIds[index].id, imageIds[index].imageId)" :alt="product.name">
+                                    <a :href="setProductLink(product)" target="_blank" title="Se rendre sur la page du produit" class="product-image">
+                                        <img :src="setUrl(product)" :alt="product.name">
                                     </a>
                                     <div class="product-content">
-                                        <h4><a :href="setProductLink(index)" target="_blank">{{ product.name }}</a></h4>
+                                        <h4><a :href="setProductLink(product)" target="_blank">{{ product.name }}</a></h4>
                                     </div>
                                 </div>
                                 <strong class="product-price">{{product.price.slice(0, 5)}} €</strong>
@@ -165,7 +145,7 @@ endif;
                             <h5><?php the_field('titre_aucun_article'); ?></h5>
                             <p><?php the_field('texte_aucun_article'); ?></p>
                             <div class="button">
-                                <a class="btn-accueil" href="<?= home_url('/') ?>">Accueil</a>
+                                <a class="btn-accueil" href="#" @click="handleReload()">Recommencer</a>
                                 <?php $le_shop = get_field('le_shop', 'option');
                                 $le_shop_target = $le_shop['target'] ? $le_shop['target'] : '_self';
                                 if ($le_shop) : ?>
@@ -201,8 +181,6 @@ endif;
                     allAnswers: false,
                     responseIsReady: false,
                     products: null,
-                    image: null,
-                    imageIds: [],
                     key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@',
                     productsLink: [],
                     productMatchingValues: [],
@@ -213,9 +191,11 @@ endif;
                 this.isLoading = false;
             },
             methods: {
+                handleReload() {
+                    window.location.reload();
+                },
                 getData() {
                     this.data = <?= json_encode($question_list); ?>;
-                    this.image = <?= json_encode($products_images); ?>;
                     this.apiResponse = <?= $response ? json_encode($response) : json_encode($err); ?>;
                     this.apiResponse = JSON.parse(this.apiResponse);
                     this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
@@ -266,44 +246,15 @@ endif;
                         }
                     }
                     this.products = tempArray;
-                    this.setImageIds();
                 },
-                setImageIds() {
-                    let tempArray = [];
-                    let tempLink = [];
-                    for (const product of this.products) {
-                        if (product.product_type === "combinations") {
-                            tempLink.push({
-                                id: product.id,
-                                link: product.link_rewrite,
-                                combination: product.associations.combinations[0]
-                            })
-                        } else {
-                            tempLink.push({
-                                id: product.id,
-                                link: product.link_rewrite
-                            })
-                        }
-                        this.productsLink = [...new Set(tempLink)]
-                        for (const image of this.image) {
-                            if (product.id === Number(image.image['@attributes'].id)) {
-                                tempArray.push({
-                                    id: image.image['@attributes'].id,
-                                    imageId: image.image.declination[0]['@attributes'].id
-                                })
-                            }
-                        }
-                    }
-                    this.imageIds = [...new Set(tempArray)];
+                setUrl(product) {
+                    return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}`;
                 },
-                setUrl(id, imageId) {
-                    return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(id)}/${Number(imageId)}`;
-                },
-                setProductLink(index) {
-                    if (this.productsLink[index].combination) {
-                        return `https://leshop-chezolympe.btg-dev.com/${this.productsLink[index].id}-${this.productsLink[index].combination.id}-${this.productsLink[index].link}.html`;
+                setProductLink(product) {
+                    if (product.product_type === "combinations") {
+                        return `https://leshop-chezolympe.btg-dev.com/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
                     } else {
-                        return `https://leshop-chezolympe.btg-dev.com/${this.productsLink[index].id}-${this.productsLink[index].link}.html`;
+                        return `https://leshop-chezolympe.btg-dev.com/${product.id}-${product.link_rewrite}.html`
                     }
                 }
             }

@@ -167,9 +167,12 @@
         font-size: 1.9rem;
         font-weight: var.$normal;
         font-family: var.$avenirRegular;
-        max-width: 847px;
       }
     }
+  }
+
+  .questionnaire-content {
+    margin-top: 2rem;
   }
 
   .question-part {

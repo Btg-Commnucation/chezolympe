@@ -47,6 +47,10 @@
       width: 100%;
       padding-block: 4.9rem 7.3rem;
 
+      @include var.breakpoint(tablet) {
+        padding-block: 2rem;
+      }
+
       &:nth-of-type(2n) {
         background: var.$lightOrange;
 
@@ -82,7 +86,7 @@
       }
 
       .content {
-        margin-top: 3rem;
+        margin-top: 1rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -113,9 +117,16 @@
             text-align: center;
           }
 
+          li {
+            margin-top: 2rem;
+            font-weight: var.$light;
+            font-family: var.$avenirLight;
+          }
+
           strong {
             font-weight: var.$black;
             font-family: var.$avenirRegular;
+            display: inline;
           }
 
           p {
@@ -168,5 +179,17 @@
         }
       }
     }
+  }
+}
+
+.conseils-article {
+  position: relative;
+
+  .feuille-noire {
+    position: absolute;
+    width: 101px;
+    height: 109px;
+    top: 2%;
+    right: -0.9%;
   }
 }
