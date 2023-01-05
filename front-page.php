@@ -41,21 +41,7 @@ get_header(); ?>
     <?php get_template_part('parts/shop-categories');
     get_template_part('parts/top-commu');
     get_template_part('parts/slider');
-    $args = array(
-        'post_type' => 'post',
-        'post_per_page' => 2,
-        'orderby' => 'date',
-        'order' => 'ASC'
-    );
-
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) :
-    ?>
-        <section class="posts">
-
-        </section>
-    <?php endif; ?>
+    get_template_part('parts/posts'); ?>
 
     <script>
         const {

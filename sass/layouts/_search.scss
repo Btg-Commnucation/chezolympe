@@ -1,0 +1,83 @@
+@use "../abstracts" as var;
+
+#search {
+  margin-top: 5rem;
+  .container {
+    max-width: 85%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 4.6rem;
+    font-weight: 400;
+    font-family: var.$gallery;
+    margin-bottom: 2rem;
+
+    @include var.breakpoint(mobile) {
+      text-align: center;
+    }
+  }
+
+  ul {
+    margin-left: 4rem !important;
+
+    li:not(:last-of-type) {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      font-size: 1.8rem;
+      font-weight: 400;
+      font-family: var.$avenirRegular;
+      color: var.$darkOrange;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: var.$gray;
+      }
+    }
+  }
+
+  .alert {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    @include var.breakpoint(mobile) {
+      align-items: center;
+    }
+  }
+
+  p {
+    font-size: 1.8rem;
+    font-weight: var.$light;
+    font-family: var.$avenirLight;
+    color: var.$gray;
+
+    @include var.breakpoint(mobile) {
+      text-align: center;
+    }
+  }
+
+  a {
+    background: var.$mediumOrange;
+    color: white;
+    font-weight: var.$light;
+    font-family: var.$avenirLight;
+    font-size: 2rem;
+    border-radius: 10px;
+    border: 1px solid var.$mediumOrange;
+    padding: 1.2rem 2rem;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 2rem;
+    transition: 0.3s ease-in-out;
+    align-self: center;
+
+    &:hover {
+      background: white;
+      color: var.$mediumOrange;
+    }
+  }
+}

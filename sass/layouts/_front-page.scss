@@ -35,6 +35,19 @@ body.no-scroll {
     gap: 0;
     position: relative;
 
+    @include var.breakpoint(1400px) {
+      grid-template-rows: auto;
+    }
+
+    @include var.breakpoint(839px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 300px 300px;
+    }
+
+    @include var.breakpoint(385px) {
+      grid-template-rows: 450px 450px;
+    }
+
     .leaf-hero {
       background: url("../img/top-leaf.svg") no-repeat;
       width: 216px;
@@ -42,6 +55,10 @@ body.no-scroll {
       position: absolute;
       left: -2%;
       top: 5%;
+
+      @include var.breakpoint(laptop) {
+        display: none;
+      }
     }
 
     .leaf-bottom-image {
@@ -51,6 +68,10 @@ body.no-scroll {
       position: absolute;
       right: -0.8%;
       bottom: -3%;
+
+      @include var.breakpoint(839px) {
+        display: none;
+      }
     }
   }
 
@@ -62,6 +83,14 @@ body.no-scroll {
     justify-content: center;
     align-items: center;
     gap: 1.2rem;
+
+    @include var.breakpoint(885px) {
+      bottom: 5%;
+    }
+
+    @include var.breakpoint(565px) {
+      display: none;
+    }
 
     .line {
       width: 393px;
@@ -84,6 +113,10 @@ body.no-scroll {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include var.breakpoint(839px) {
+      grid-row: 2;
+    }
   }
 
   .slogan__container-left {
@@ -97,6 +130,10 @@ body.no-scroll {
       height: 33px;
       bottom: 10%;
       right: -5%;
+
+      @include var.breakpoint(565px) {
+        display: none;
+      }
     }
   }
 
@@ -108,11 +145,26 @@ body.no-scroll {
     justify-content: center;
     align-items: start;
 
+    @include var.breakpoint(1301px) {
+      max-width: 80%;
+      align-items: center;
+    }
+
+    @include var.breakpoint(565px) {
+      max-width: 95%;
+    }
+
     h2 {
       font-weight: 400;
       font-family: var.$gallery;
       color: white;
       margin-top: 0;
+      text-align: center;
+      font-size: 4.6rem;
+
+      @include var.breakpoint(1147px) {
+        font-size: 3.6rem !important;
+      }
     }
 
     .content {
@@ -126,14 +178,27 @@ body.no-scroll {
     font-weight: 400;
     font-family: var.$gallery;
     margin-bottom: 0;
+
+    @include var.breakpoint(1147px) {
+      font-size: 3.6rem;
+      text-align: center;
+    }
   }
 
   .right-side {
     width: 100%;
     height: 100%;
 
+    @include var.breakpoint(839px) {
+      grid-row: 1;
+    }
+
     img {
       width: 100%;
+
+      @include var.breakpoint(839px) {
+        height: 100%;
+      }
     }
   }
 }

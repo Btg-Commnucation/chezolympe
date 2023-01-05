@@ -1,0 +1,71 @@
+@use "../abstracts" as var;
+
+#not-found {
+  padding-top: 8rem;
+  width: 100%;
+  height: 100%;
+  background: #fcf0f0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 75%;
+    margin: 0 auto;
+
+    .title {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+  }
+
+  #space-ship {
+    transition: 1s ease-in-out;
+
+    &.vanish {
+      opacity: 0;
+    }
+  }
+
+  strong {
+    color: var.$gray;
+    font-size: 3rem;
+    font-weight: var.$black;
+    font-family: var.$avenirRegular;
+    text-align: center;
+  }
+}
+
+#mulder,
+#scully,
+#mib {
+  display: inline-block;
+  transition: all 1s ease-in-out;
+
+  &.vanish {
+    opacity: 0;
+  }
+
+  &.active {
+    animation: horizontal-shaking 0.3s infinite;
+  }
+}
+
+@keyframes horizontal-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

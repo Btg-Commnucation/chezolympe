@@ -11,6 +11,11 @@ const clickMenu = document.getElementById("click-menu");
 const btn = document.querySelectorAll(".btn");
 const family = document.querySelectorAll(".famille");
 
+const mulder = document.getElementById("mulder");
+const scully = document.getElementById("scully");
+const spaceShip = document.getElementById("space-ship");
+const mib = document.getElementById("mib");
+
 if (frontPage && whiteOpener) {
   document.body.classList.add("no-scroll");
   document.getElementById("left-nav").classList.add("hide");
@@ -63,4 +68,50 @@ if (splideSelector) {
       },
     },
   }).mount();
+}
+
+if (mulder && scully) {
+  mulder.addEventListener("click", () => {
+    mulder.classList.add("active");
+    scully.classList.remove("active");
+
+    setTimeout(() => {
+      mulder.classList.remove("active");
+      mulder.classList.add("vanish");
+      scully.classList.add("vanish");
+    }, 2000);
+
+    setTimeout(() => {
+      spaceShip.classList.add("vanish");
+    }, 3000);
+  });
+  scully.addEventListener("click", () => {
+    scully.classList.add("active");
+    mulder.classList.remove("active");
+
+    setTimeout(() => {
+      scully.classList.remove("active");
+      mulder.classList.add("vanish");
+      scully.classList.add("vanish");
+    }, 2000);
+
+    setTimeout(() => {
+      spaceShip.classList.add("vanish");
+    }, 3000);
+  });
+
+  mib.addEventListener("click", () => {
+    mib.classList.add("active");
+    scully.classList.remove("active");
+    mulder.classList.remove("active");
+
+    setTimeout(() => {
+      mib.classList.remove("active");
+      mib.classList.add("vanish");
+    }, 2000);
+
+    setTimeout(() => {
+      spaceShip.classList.add("vanish");
+    }, 3000);
+  });
 }

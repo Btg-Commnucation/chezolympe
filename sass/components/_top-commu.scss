@@ -40,6 +40,22 @@
     gap: 4.2rem;
     margin-top: 1.2rem;
 
+    @include var.breakpoint(1336px) {
+      gap: 2rem;
+    }
+
+    @include var.breakpoint(1258px) {
+      grid-template-columns: repeat(3, 294px);
+    }
+
+    @include var.breakpoint(956px) {
+      grid-template-columns: repeat(2, 294px);
+    }
+
+    @include var.breakpoint(626px) {
+      grid-template-columns: repeat(1, 294px);
+    }
+
     li {
       display: flex;
       flex-direction: column;
