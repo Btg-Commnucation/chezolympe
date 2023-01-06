@@ -181,7 +181,7 @@ endif;
                     allAnswers: false,
                     responseIsReady: false,
                     products: null,
-                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@',
+                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3',
                     productsLink: [],
                     productMatchingValues: [],
                 }
@@ -248,7 +248,7 @@ endif;
                     this.products = tempArray;
                 },
                 setUrl(product) {
-                    return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}`;
+                    return `https://leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 },
                 setProductLink(product) {
                     if (product.product_type === "combinations") {

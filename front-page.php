@@ -53,7 +53,7 @@ get_header(); ?>
                 return {
                     data: null,
                     frontPageProducts: [],
-                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@',
+                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3',
                     isLoading: true
                 }
             },
@@ -88,7 +88,7 @@ get_header(); ?>
                     }
                 },
                 setImageUrl(product) {
-                    return `https://${this.key}leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}`;
+                    return `https://leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 }
             }
         }).mount('#front-page')
