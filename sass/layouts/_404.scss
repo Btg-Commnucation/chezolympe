@@ -14,14 +14,30 @@
     max-width: 75%;
     margin: 0 auto;
 
+    @include var.breakpoint(mini) {
+      max-width: 98%;
+    }
+
     .title {
-      max-width: 400px;
+      width: 400px;
+      height: 425px;
       margin: 0 auto;
+      position: relative;
+
+      @include var.breakpoint(mini) {
+        max-width: 300px;
+        max-height: 325px;
+      }
     }
   }
 
   #space-ship {
     transition: 1s ease-in-out;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 
     &.vanish {
       opacity: 0;
@@ -37,11 +53,27 @@
   }
 }
 
+#mulder-scully,
+#mib-ending {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: 1.5s ease-in-out;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 #mulder,
 #scully,
 #mib {
   display: inline-block;
   transition: all 1s ease-in-out;
+  cursor: pointer;
 
   &.vanish {
     opacity: 0;
@@ -49,6 +81,15 @@
 
   &.active {
     animation: horizontal-shaking 0.3s infinite;
+  }
+}
+
+a {
+  color: var.$darkOrange;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    color: var.$gray;
   }
 }
 

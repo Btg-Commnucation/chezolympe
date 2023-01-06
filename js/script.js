@@ -13,8 +13,10 @@ const family = document.querySelectorAll(".famille");
 
 const mulder = document.getElementById("mulder");
 const scully = document.getElementById("scully");
+const mulderScully = document.getElementById("mulder-scully");
 const spaceShip = document.getElementById("space-ship");
 const mib = document.getElementById("mib");
+const mibEnding = document.getElementById("mib-ending");
 
 if (frontPage && whiteOpener) {
   document.body.classList.add("no-scroll");
@@ -73,23 +75,13 @@ if (splideSelector) {
 if (mulder && scully) {
   mulder.addEventListener("click", () => {
     mulder.classList.add("active");
-    scully.classList.remove("active");
+
+    setTimeout(() => {
+      scully.classList.add("active");
+    }, 200);
 
     setTimeout(() => {
       mulder.classList.remove("active");
-      mulder.classList.add("vanish");
-      scully.classList.add("vanish");
-    }, 2000);
-
-    setTimeout(() => {
-      spaceShip.classList.add("vanish");
-    }, 3000);
-  });
-  scully.addEventListener("click", () => {
-    scully.classList.add("active");
-    mulder.classList.remove("active");
-
-    setTimeout(() => {
       scully.classList.remove("active");
       mulder.classList.add("vanish");
       scully.classList.add("vanish");
@@ -98,6 +90,32 @@ if (mulder && scully) {
     setTimeout(() => {
       spaceShip.classList.add("vanish");
     }, 3000);
+
+    setTimeout(() => {
+      mulderScully.classList.add("show");
+    }, 4000);
+  });
+  scully.addEventListener("click", () => {
+    scully.classList.add("active");
+
+    setTimeout(() => {
+      mulder.classList.add("active");
+    }, 200);
+
+    setTimeout(() => {
+      scully.classList.remove("active");
+      mulder.classList.remove("active");
+      mulder.classList.add("vanish");
+      scully.classList.add("vanish");
+    }, 2000);
+
+    setTimeout(() => {
+      spaceShip.classList.add("vanish");
+    }, 3000);
+
+    setTimeout(() => {
+      mulderScully.classList.add("show");
+    }, 4000);
   });
 
   mib.addEventListener("click", () => {
@@ -113,5 +131,9 @@ if (mulder && scully) {
     setTimeout(() => {
       spaceShip.classList.add("vanish");
     }, 3000);
+
+    setTimeout(() => {
+      mibEnding.classList.add("show");
+    }, 4000);
   });
 }
