@@ -29,8 +29,8 @@ function btg_register_assets()
     wp_enqueue_style('btg-splide', get_template_directory_uri() . '/css/splide.min.css', 1.0);
     wp_enqueue_style('btg-style', get_template_directory_uri() . '/css/style.css', 1.0);
     // wp_enqueue_script('axios', 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js', array(), 1.0);
-    wp_enqueue_script('axios', 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js', array(), 1.0);
-    wp_enqueue_script('vue', get_template_directory_uri() . '/vue.dev.js', array(), 1.0);
+    wp_enqueue_script('vue', get_template_directory_uri() . '/vue.prod.js', array(), 1.0);
+    // wp_enqueue_script('vue', get_template_directory_uri() . '/vue.dev.js', array(), 1.0);
     wp_enqueue_script('btg-splide', get_template_directory_uri() . '/js/splide.min.js', array(), 1.0);
     wp_enqueue_script('btg-script', get_template_directory_uri() . '/js/script.js', array(), 1.0, true);
 }

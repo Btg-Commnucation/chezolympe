@@ -159,11 +159,15 @@ body.no-scroll {
       font-family: var.$gallery;
       color: white;
       margin-top: 0;
-      text-align: center;
+      text-align: left;
       font-size: 4.6rem;
 
       @include var.breakpoint(1147px) {
         font-size: 3.6rem !important;
+      }
+
+      @include var.breakpoint(mobile) {
+        text-align: center;
       }
     }
 

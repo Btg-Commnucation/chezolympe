@@ -17,8 +17,57 @@ header {
       grid-template-columns: 1fr 160px 1fr;
     }
 
-    @include var.breakpoint(900px) {
-      grid-template-columns: 1fr 1fr;
+    @include var.breakpoint(mini) {
+      grid-template-columns: 1fr 100px 1fr;
+    }
+  }
+}
+
+#shop-link__container {
+  display: none;
+  position: relative;
+  z-index: 3;
+
+  @include var.breakpoint(900px) {
+    display: block;
+    align-self: center;
+    justify-self: center;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0 !important;
+      color: var.$gray;
+      margin-top: 0;
+      font-size: 1.8rem;
+      font-family: var.$avenirLight;
+      font-weight: var.$light;
+      text-align: left;
+      text-transform: uppercase;
+
+      @include var.breakpoint(360px) {
+        font-size: 1.4rem;
+      }
+
+      .le-shop {
+        font-weight: var.$black;
+        font-family: var.$avenirRegular;
+        font-size: 2.3rem;
+        letter-spacing: 2px;
+
+        @include var.breakpoint(360px) {
+          font-size: 1.8rem;
+        }
+      }
+
+      .shop {
+        color: var.$mediumOrange;
+      }
     }
   }
 }
@@ -34,6 +83,9 @@ header {
   background: white;
   transition: transform 2s ease-in-out;
 
+  @include var.breakpoint(mini) {
+    height: 90px;
+  }
   &.transform {
     transform: scale(2) translateY(30%);
     z-index: 100;
@@ -52,12 +104,25 @@ header {
     z-index: 0;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
+
+    @include var.breakpoint(mini) {
+      width: 120px;
+      height: 120px;
+    }
   }
 
   a {
     position: absolute;
     z-index: 1;
     top: 10%;
+
+    @include var.breakpoint(mini) {
+      max-height: 90px;
+
+      img {
+        max-height: 90px;
+      }
+    }
   }
 }
 
@@ -260,30 +325,54 @@ header {
   background: white;
   transition: 0.8s ease-in-out;
   align-self: start;
+  inset: 0;
 
   ul {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     list-style: none;
     height: 100%;
     gap: 2rem;
+    max-width: 90%;
+    margin: 14rem auto 0 auto;
 
     li a {
       font-family: var.$gallery;
       color: var.$gray;
-      font-size: 2.2rem;
+      font-size: 4rem;
       text-decoration: none;
       transition: 0.3s ease-in-out;
+
+      @include var.breakpoint(336px) {
+        font-size: 3rem;
+      }
 
       &:hover {
         color: var.$mediumOrange;
       }
     }
+
+    .search-container {
+      width: 100%;
+    }
+
+    #search-header {
+      width: 100%;
+
+      label {
+        width: 100%;
+      }
+
+      input {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
   }
 
   &.show {
-    transform: translateX(-25%);
+    transform: translateX(0);
   }
 }

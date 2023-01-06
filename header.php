@@ -13,6 +13,15 @@
 
     <header>
         <div class="container-narrow">
+            <div id="shop-link__container">
+                <?php $shop_link = get_field('le_shop', 'option');
+                $shop_link_target = $shop_link['target'] ? $shop_link['target'] : '_self';
+                ?>
+                <a href="<?= esc_url($shop_link['url']); ?>" target="<?= esc_attr($shop_link_target); ?>" class="shop-link">
+                    <span>Aller vers</span>
+                    <span class="le-shop">Le <span class="shop">shop</span></span>
+                </a>
+            </div>
             <?php if (have_rows('menu_gauche', 'option')) : ?>
                 <nav id="left-nav">
                     <ul class="nav-container">
