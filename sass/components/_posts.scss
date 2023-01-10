@@ -55,10 +55,12 @@
     align-self: center;
     place-content: center;
     margin-top: 6.1rem;
+    max-height: 300px;
 
     @include var.breakpoint(1160px) {
       grid-template-columns: 1fr;
       gap: 2rem;
+      max-height: 100%;
     }
   }
 

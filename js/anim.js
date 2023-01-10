@@ -10,8 +10,6 @@ const observer = new IntersectionObserver((entries) => {
         .querySelector("header > .container-narrow > #logo")
         .classList.remove("transform");
       setTimeout(() => {
-        document.getElementById("left-nav").classList.remove("hide");
-        document.getElementById("right-nav").classList.remove("hide");
         entry.target.classList.add("remove");
         document
           .querySelector("header > .container-narrow > #logo")

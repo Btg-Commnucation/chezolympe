@@ -53,7 +53,7 @@ json_encode($post_list);
     <article v-if="loading">
         <div class="container">
             <section class="sort-by">
-                <button v-if="mobile" class="show-sort" @click="showSort = !showSort">{{showSort ? 'Cacher les filtres' : 'Ouvrir les filtres'}}</button>
+                <button v-if="mobile" class="show-sort" @click="showSort = !showSort">{{showSort ? 'Cacher les filtres' : 'Filtrer les articles'}}</button>
                 <ul :class="showSort ? '' : 'hide'">
                     <li>
                         <button @click="filterCategory('')">Tout</button>

@@ -21,8 +21,6 @@ const mibEnding = document.getElementById("mib-ending");
 
 if (frontPage && whiteOpener) {
   document.body.classList.add("no-scroll");
-  document.getElementById("left-nav").classList.add("hide");
-  document.getElementById("right-nav").classList.add("hide");
   document
     .querySelector("header > .container-narrow > #logo")
     .classList.add("transform");

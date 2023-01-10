@@ -59,25 +59,4 @@
       text-align: center;
     }
   }
-
-  a {
-    background: var.$mediumOrange;
-    color: white;
-    font-weight: var.$light;
-    font-family: var.$avenirLight;
-    font-size: 2rem;
-    border-radius: 10px;
-    border: 1px solid var.$mediumOrange;
-    padding: 1.2rem 2rem;
-    text-decoration: none;
-    text-align: center;
-    margin-top: 2rem;
-    transition: 0.3s ease-in-out;
-    align-self: center;
-
-    &:hover {
-      background: white;
-      color: var.$mediumOrange;
-    }
-  }
 }

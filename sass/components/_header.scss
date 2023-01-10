@@ -49,6 +49,7 @@ header {
       font-weight: var.$light;
       text-align: left;
       text-transform: uppercase;
+      line-height: 1;
 
       @include var.breakpoint(360px) {
         font-size: 1.4rem;
