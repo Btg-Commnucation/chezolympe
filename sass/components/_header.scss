@@ -161,6 +161,14 @@ header {
     }
 
     li {
+      &:first-of-type a {
+        color: var.$mediumOrange !important;
+
+        &:hover {
+          color: var.$gray !important;
+        }
+      }
+
       a {
         color: var.$gray;
         font-size: 2.2rem;

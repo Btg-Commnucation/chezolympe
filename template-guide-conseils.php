@@ -21,17 +21,37 @@ get_header();
             <p><?php get_field('texte_fond_peau') ? the_field('texte_fond_peau') : 'Vous recherchez des conseils et vous appartenez a une des catégories ci-dessous, pas de panique ! Nous sommes là pour vous accompagner dans la recherche de votre plaisir quelques soient vos spécificités, parce que nous sommes toutes uniques.' ?></p>
             <?php if (have_rows('lien_fond_peau')) : ?>
                 <div class="lien-specifiques">
-                    <?php while (have_rows('lien_fond_peau')) : the_row();
-                        $lien = get_sub_field('lien');
-                        $lien_target = $lien['target'] ? $lien['target'] : '_self';
-                    ?>
-                        <a href="<?= esc_url($lien['url']); ?>" target="<?= esc_attr($lien_target) ?>"><?= esc_html($lien['title']); ?></a>
+                    <?php while (have_rows('lien_fond_peau')) : the_row(); ?>
+                        <a class="popup-link" href="#"><?php the_sub_field('titre'); ?></a>
+                        <?php if (get_sub_field('contenu_popup')) : ?>
+                            <div class="popup-background">
+                                <div class="popup">
+                                    <div id="close-popup">
+                                        <img src="<?= get_template_directory_uri(); ?>/img/close-popup.svg" alt="Fermer le popup">
+                                    </div>
+                                    <?php the_sub_field('contenu_popup'); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
         </div>
     </section>
     <?php get_template_part('parts/slider'); ?>
+    <script>
+        const {
+            createApp
+        } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    data: null,
+                }
+            }
+        })
+    </script>
 </main>
 
 <?php

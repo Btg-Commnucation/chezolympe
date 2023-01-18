@@ -40,6 +40,8 @@ add_filter('show_admin_bar', '__return_false');
 
 add_action('wp_enqueue_scripts', 'btg_register_assets');
 
+add_filter('wpcf7_autop_or_not', '__return_false');
+
 
 
 register_nav_menus(array(
