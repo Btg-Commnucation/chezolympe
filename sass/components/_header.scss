@@ -118,6 +118,11 @@ header {
     z-index: 1;
     top: 10%;
 
+    img {
+      position: relative;
+      z-index: 1;
+    }
+
     @include var.breakpoint(mini) {
       max-height: 90px;
 
