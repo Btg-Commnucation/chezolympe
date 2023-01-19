@@ -18,6 +18,9 @@ const mulderScully = document.getElementById("mulder-scully");
 const spaceShip = document.getElementById("space-ship");
 const mib = document.getElementById("mib");
 const mibEnding = document.getElementById("mib-ending");
+const popupLink = document.querySelectorAll(".popup-link");
+const popupBackground = document.querySelectorAll(".popup-background");
+const closePopup = document.getElementById("close-popup");
 
 if (frontPage && whiteOpener) {
   document.body.classList.add("no-scroll");
@@ -107,4 +110,23 @@ if (mulder && scully) {
       pageNotFound(mib, null, spaceShip, mibEnding);
     }
   });
+}
+
+if (popupLink && popupBackground) {
+  for (let i = 0; i < popupLink.length; i++) {
+    popupLink[i].addEventListener("click", () => {
+      popupBackground[i].classList.add("active");
+      closePopup.addEventListener("click", () => {
+        popupBackground[i].classList.remove("active");
+      });
+    });
+  }
+
+  for (let j = 0; j < popupBackground.length; j++) {
+    popupBackground[j].addEventListener("click", (e) => {
+      if (e.target.classList.contains("popup-background")) {
+        popupBackground[j].classList.remove("active");
+      }
+    });
+  }
 }
