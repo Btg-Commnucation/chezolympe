@@ -82,11 +82,10 @@
     border-top-right-radius: 8.3rem;
 
     @include var.breakpoint(mobile) {
-      grid-template-columns: repeat(2, 1fr);
+      padding-inline: 1.5rem;
     }
 
     @include var.breakpoint(mini) {
-      grid-template-columns: 1fr;
       gap: 0.7rem;
     }
 
@@ -97,6 +96,10 @@
       align-items: center;
       justify-items: center;
       gap: 0.7rem;
+
+      @include var.breakpoint(mini) {
+        grid-template-rows: repeat(2, 50px);
+      }
 
       p {
         text-align: center;
