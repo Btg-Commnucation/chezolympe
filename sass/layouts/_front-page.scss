@@ -131,7 +131,7 @@ body.no-scroll {
       bottom: 10%;
       right: -5%;
 
-      @include var.breakpoint(565px) {
+      @include var.breakpoint(620px) {
         display: none;
       }
     }

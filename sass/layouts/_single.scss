@@ -137,6 +137,7 @@
     .post {
       display: grid;
       grid-template-columns: 83px 1fr;
+      grid-template-rows: 89px;
       gap: 0.8rem;
       max-height: 89px;
 
@@ -165,7 +166,7 @@
     }
 
     h5 a {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: var.$black;
       font-family: var.$avenirRegular;
       color: var.$gray;
@@ -180,6 +181,10 @@
       gap: 1.8rem;
       margin-block: 0.2rem 0.6rem;
       margin-inline: 0;
+
+      @include var.breakpoint(mini) {
+        margin-block: 0.2rem;
+      }
 
       li {
         color: var.$mediumOrange;
@@ -270,6 +275,10 @@
       font-family: var.$avenirRegular;
       color: var.$mediumOrange;
       margin-bottom: 1.6rem;
+
+      @include var.breakpoint(mini) {
+        text-align: center;
+      }
     }
 
     ul {
@@ -281,6 +290,8 @@
 
       @include var.breakpoint(mini) {
         align-items: center;
+        flex-direction: row;
+        gap: 1.8rem;
       }
 
       li {
