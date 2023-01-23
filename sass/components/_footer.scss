@@ -42,16 +42,24 @@ footer {
     font-weight: var.$black;
     font-family: var.$avenirRegular;
     color: white;
-    text-align: center;
+    text-align: start;
     margin-bottom: 0.8rem;
+
+    @include var.breakpoint(mini) {
+      text-align: center;
+    }
   }
 
   ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     gap: 0.6rem;
+
+    @include var.breakpoint(mini) {
+      align-items: center;
+    }
 
     li {
       padding-block: 0.6rem;

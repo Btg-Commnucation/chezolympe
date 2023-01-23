@@ -51,6 +51,7 @@
   .posts__container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
     column-gap: 4.2rem;
     align-self: center;
     place-content: center;
@@ -85,6 +86,10 @@
     min-height: 291px;
     object-fit: cover;
     border-radius: 38px;
+
+    @include var.breakpoint(mini) {
+      max-height: 291px;
+    }
   }
 
   .post__content {

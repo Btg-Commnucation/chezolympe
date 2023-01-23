@@ -1,0 +1,38 @@
+@use "../abstracts" as var;
+
+#legals {
+  margin-top: 5rem;
+  .container {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 4.6rem;
+    font-weight: var.$black;
+    color: black;
+    font-family: var.$gallery;
+  }
+
+  ul li {
+    font-size: 1.8rem;
+    font-weight: var.$light;
+    font-family: var.$avenirLight;
+    color: var.$gray;
+  }
+
+  strong {
+    font-weight: var.$black;
+    font-family: var.$avenirRegular;
+    font-size: 1.8rem;
+    margin: 0 !important;
+    display: inline;
+  }
+
+  p {
+    font-family: var.$avenirLight;
+    font-weight: var.$light;
+    color: var.$gray;
+    font-size: 1.8rem;
+  }
+}

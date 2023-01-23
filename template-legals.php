@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/*
+* Template Name: Legals
+*/
+get_header(); ?>
 
 <main id="legals">
     <div class="container">
