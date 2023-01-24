@@ -1,4 +1,4 @@
-<?php $instagram_token = "Not now" ?>
+<?php include '../variables.php' ?>
 <script>
     const instagramToken = "<?= $instagram_token ?>";
 </script>
