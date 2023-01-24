@@ -1,4 +1,4 @@
-<?php $instagram_token = "IGQVJVdDlkMzRfYXJkZADZAxdE5CSmxwNFVXcnp5aVBWWGZAEaG5lZAlZABR3ZArTUhSU19vUUttelBkRmpxOXd3ZAzBQbllveEw0S24wcWM0VUgzWjI0TUFmNUhkVlRiN2FjRVpCTWw2OGJEaFZAuYUx3NUczRAZDZD" ?>
+<?php $instagram_token = "Not now" ?>
 <script>
     const instagramToken = "<?= $instagram_token ?>";
 </script>
