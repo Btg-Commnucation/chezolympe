@@ -2,6 +2,7 @@ import { handleMenu } from "./nav.js";
 import { handleFamily } from "./questionnaire.js";
 import { animFrontPage } from "./anim.js";
 import { pageNotFound } from "./page-not-found.js";
+import { instagramPosts } from "./instagram.js";
 
 const splideSelector = document.querySelector(".splide");
 const frontPage = document.getElementById("front-page");
@@ -21,6 +22,11 @@ const mibEnding = document.getElementById("mib-ending");
 const popupLink = document.querySelectorAll(".popup-link");
 const popupBackground = document.querySelectorAll(".popup-background");
 const closePopup = document.getElementById("close-popup");
+const instagramContainer = document.getElementById("instagram-container");
+
+if (instagramContainer) {
+  instagramPosts(instagramToken);
+}
 
 if (frontPage && whiteOpener) {
   document.body.classList.add("no-scroll");
