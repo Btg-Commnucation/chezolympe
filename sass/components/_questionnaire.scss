@@ -2,10 +2,19 @@
 
 #questionnaire {
   .hero-banner {
-    background: url("../img/page-banner.jpg") no-repeat;
     background-size: 100% 359px;
     height: 359px;
     position: relative;
+    background: transparent !important;
+
+    .hero-banner-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
 
     @include var.breakpoint(mini) {
       height: auto;
@@ -20,6 +29,8 @@
       align-items: center;
       max-width: 75%;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {

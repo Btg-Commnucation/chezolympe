@@ -64,6 +64,8 @@ endif;
         <div class="leaf">
             <img src="<?= get_template_directory_uri(); ?>/img/top-leaf.svg" alt="Feuille de vigne">
         </div>
+        <?php $image_questionnaire = get_field('image_questionnaire'); ?>
+        <img src="<?= esc_url($image_questionnaire['url']); ?>" alt="<?= esc_attr($image_questionnaire['alt']); ?>" class="hero-banner-img" />
         <div class="container">
             <h1><?php the_title(); ?></h1>
             <?php the_content(); ?>

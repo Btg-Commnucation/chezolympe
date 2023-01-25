@@ -1,6 +1,10 @@
-<?php include '../variables.php' ?>
+<?php
+if (get_field('token_instagram', 'option')) {
+    $instagram_token = get_field('token_instagram', 'option');
+}
+?>
 <script>
-    const instagramToken = "<?= $instagram_token ?>";
+    const instagramToken = "<?= $instagram_token; ?>";
 </script>
 <section class="instagram" id="instagram-container">
     <div class="title-container">
