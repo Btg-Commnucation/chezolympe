@@ -73,15 +73,20 @@ get_header(); ?>
             methods: {
                 getData() {
                     this.data = <?php echo json_encode($response); ?>;
-                    this.data = JSON.parse(this.data)
+                    this.data = JSON.parse(this.data);
                     this.data.products.map(product => {
-                        if (product.id_category_default == "2") {
-                            this.frontPageProducts.push(product);
+                        if (product.active === "1") {
+                            for (const category of product.associations.categories) {
+                                if (category.id === "2") {
+                                    console.log(product)
+                                    this.frontPageProducts.push(product);
+                                }
+                            }
                         }
                     })
                 },
                 setProductLink(product) {
-                    if (product.product_type === "combinations") {
+                    if (product.product_type === "combinations" && product.associations.combinations) {
                         return `https://leshop-chezolympe.btg-dev.com/accueil/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
                     } else {
                         return `https://leshop-chezolympe.btg-dev.com/accueil/${product.id}-${product.link_rewrite}.html`
