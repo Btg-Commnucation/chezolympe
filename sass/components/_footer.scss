@@ -62,8 +62,10 @@ footer {
     }
 
     li {
-      padding-block: 0.6rem;
-      margin-block: 0.5rem;
+      @include var.breakpoint(mobile) {
+        margin-block: 0.5rem;
+        padding-block: 0.6rem;
+      }
     }
 
     &:not(#instagram) {

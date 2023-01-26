@@ -35,10 +35,16 @@
   .insta-image {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 350px;
     place-items: center;
     column-gap: 0.2rem;
     margin-top: 2rem !important;
     width: 100%;
+
+    li {
+      width: 100%;
+      height: 100%;
+    }
 
     @include var.breakpoint(tablet) {
       grid-template-columns: repeat(3, 1fr);

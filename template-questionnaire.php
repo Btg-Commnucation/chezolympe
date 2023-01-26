@@ -106,7 +106,7 @@ endif;
     <template v-if="!isLoading">
         <section class="question-part">
             <div class="container">
-                <h2>{{ allAnswers ? 'Voici des produits qui te correspondent' : 'Questionnaire'}}</h2>
+                <!-- <h2>{{ !allAnswers ? 'Questionnaire' : products.lenght > 0 ? 'Voici des produits qui te correspondent' : 'Nous n'avons rien trouvé pour le moment' }}</h2> -->
                 <div class="questions-container" v-if="!allAnswers">
                     <div class="question" v-for="question in data.slice(sliceA, sliceB)">
                         <h3>{{ question.question  }}</h3>
