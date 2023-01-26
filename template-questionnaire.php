@@ -64,7 +64,7 @@ endif;
         <div class="leaf">
             <img src="<?= get_template_directory_uri(); ?>/img/top-leaf.svg" alt="Feuille de vigne">
         </div>
-        <?php $image_questionnaire = get_field('image_questionnaire'); ?>
+        <?php $image_questionnaire = get_field('questionnaire_image'); ?>
         <img src="<?= esc_url($image_questionnaire['url']); ?>" alt="<?= esc_attr($image_questionnaire['alt']); ?>" class="hero-banner-img" />
         <div class="container">
             <h1><?php the_title(); ?></h1>
@@ -106,7 +106,8 @@ endif;
     <template v-if="!isLoading">
         <section class="question-part">
             <div class="container">
-                <!-- <h2>{{ !allAnswers ? 'Questionnaire' : products.lenght > 0 ? 'Voici des produits qui te correspondent' : 'Nous n'avons rien trouvé pour le moment' }}</h2> -->
+                <h2 v-if="!allAnswers">Questionnaire</h2>
+                <h2 v-else="allAsnwsers && products.length > 0">{{ products.length > 0 ? 'Voici les produits qui semblent te correspondre' : noResponseTitle }}</h2>
                 <div class="questions-container" v-if="!allAnswers">
                     <div class="question" v-for="question in data.slice(sliceA, sliceB)">
                         <h3>{{ question.question  }}</h3>
@@ -129,7 +130,8 @@ endif;
                         </div>
                     </div>
                     <div class="product-list" v-if="responseIsReady">
-                        <p class="texte-return-product">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
+                        <p class="texte-return-product" v-if="products.length > 0">Cela semble répondre à ton profil. Nous t'encourageons cependant à bien regarder les fiches-produits pour t'assurer que cela répond à tes attentes.</p>
+                        <p v-else><?php the_field('texte_aucun_article'); ?></p>
                         <ul class="product" v-if="products.length > 0">
                             <li v-for="(product, index) in products">
                                 <div class="product-container">
@@ -144,8 +146,6 @@ endif;
                             </li>
                         </ul>
                         <div class="no-result" v-else>
-                            <h5><?php the_field('titre_aucun_article'); ?></h5>
-                            <p><?php the_field('texte_aucun_article'); ?></p>
                             <div class="button">
                                 <a class="btn-accueil" href="#" @click="handleReload()">Recommencer</a>
                                 <?php $le_shop = get_field('le_shop', 'option');
@@ -186,6 +186,8 @@ endif;
                     key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3',
                     productsLink: [],
                     productMatchingValues: [],
+                    noResponseTitle: null,
+                    newFeaturedValues: [],
                 }
             },
             async mounted() {
@@ -196,12 +198,21 @@ endif;
                 handleReload() {
                     window.location.reload();
                 },
-                getData() {
+                async getData() {
                     this.data = <?= json_encode($question_list); ?>;
                     this.apiResponse = <?= $response ? json_encode($response) : json_encode($err); ?>;
                     this.apiResponse = JSON.parse(this.apiResponse);
                     this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
                     this.featureValues = JSON.parse(this.featureValues);
+                    await this.setFeaturedValues();
+                    this.noResponseTitle = <?= json_encode(get_field('titre_aucun_article')); ?>;
+                },
+                setFeaturedValues() {
+                    this.featureValues.product_feature_values.map((item, index) => {
+                        if (item.value !== "Les points forts") {
+                            this.newFeaturedValues.push(item)
+                        }
+                    })
                 },
                 async handleClick() {
                     this.results.push(this.result);
@@ -219,15 +230,11 @@ endif;
                     }
                 },
                 setListFeature() {
-                    let tempArray = [];
-                    for (const element of this.results) {
-                        tempArray.push(element.replaceAll('-', ' '));
-                    }
-                    this.results = tempArray;
                     let arrayIdValues = [];
-                    for (const element of this.featureValues.product_feature_values) {
-                        for (const value of this.results) {
-                            if (value === element.value.toLowerCase()) {
+                    let arraySecond = [];
+                    for (const value of this.results) {
+                        for (const element of this.newFeaturedValues) {
+                            if (value.toLowerCase() === element.value.toLowerCase()) {
                                 arrayIdValues.push({
                                     id: String(element.id),
                                     name: element.value
@@ -235,7 +242,45 @@ endif;
                             }
                         }
                     }
-                    this.productMatchingValues = [...new Set(arrayIdValues)]
+
+
+                    arraySecond = arrayIdValues.filter(element => {
+                        return arrayIdValues.some(value => {
+                            return value.name.toLowerCase() !== element.name.toLowerCase()
+                        })
+                    })
+
+
+                    arraySecond = arraySecond.map(element => {
+                        return {
+                            id: String(null),
+                            name: element.name
+                        }
+                    })
+
+                    // arrayIdValues.filter(element => {
+                    //     console.log(element.name)
+                    //     for (const emptyValue of this.results) {
+                    //         if (element.name !== emptyValue) {
+                    //             return arraySecond.push({
+                    //                 id: String(null),
+                    //                 name: emptyValue
+                    //             })
+                    //         }
+                    //     }
+                    // })
+                    // for (const emptyValue of this.results) {
+                    //     // for (const idValues of arrayIdValues) {
+                    //     if (arrayIdValues.find(element => element.name.toLowerCase() !== emptyValue.toLowerCase())) {
+                    //         console.log(emptyValue)
+                    //         arraySecond.push({
+                    //             id: String(null),
+                    //             name: emptyValue
+                    //         })
+                    //     }
+                    //     // }
+                    // }
+                    this.productMatchingValues = arrayIdValues.concat(arraySecond);
                 },
                 setProducts() {
                     let tempArray = [];
@@ -253,11 +298,7 @@ endif;
                     return `https://leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 },
                 setProductLink(product) {
-                    if (product.product_type === "combinations") {
-                        return `https://leshop-chezolympe.btg-dev.com/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
-                    } else {
-                        return `https://leshop-chezolympe.btg-dev.com/${product.id}-${product.link_rewrite}.html`
-                    }
+                    return `https://leshop-chezolympe.btg-dev.com/${product.id}-${product.link_rewrite}.html`
                 }
             }
         }).mount('#questionnaire');
