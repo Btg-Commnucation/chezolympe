@@ -78,7 +78,6 @@ get_header(); ?>
                         if (product.active === "1") {
                             for (const category of product.associations.categories) {
                                 if (category.id === "2") {
-                                    console.log(product)
                                     this.frontPageProducts.push(product);
                                 }
                             }
@@ -86,8 +85,8 @@ get_header(); ?>
                     })
                 },
                 setProductLink(product) {
-                    if (product.product_type === "combinations" && product.associations.combinations) {
-                        return `https://leshop.chezolympe.com/accueil/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
+                    if (typeof product.link_rewrite === 'object') {
+                        return `https://leshop.chezolympe.com/accueil/${product.id}-${product.link_rewrite[0].value}.html`
                     } else {
                         return `https://leshop.chezolympe.com/accueil/${product.id}-${product.link_rewrite}.html`
                     }

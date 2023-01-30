@@ -9,7 +9,7 @@
                         <img :src="setImageUrl(product)" :alt="product.name">
                     </a>
                     <div class="product-content">
-                        <h4><a :href="setProductLink(product)" target="_blank">{{ product.name }}</a></h4>
+                        <h4><a :href="setProductLink(product)" target="_blank">{{ typeof product.name === 'object' ? product.name[0].value : product.name  }}</a></h4>
                     </div>
                 </div>
                 <strong class="product-price" v-if="product.name.length > 0">{{product.price.slice(0, 5)}} €</strong>
