@@ -8,7 +8,7 @@ get_header();
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/products?display=full&output_format=JSON",
+    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/products?display=full&output_format=JSON",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -21,7 +21,7 @@ curl_close($curl);
 $request = curl_init();
 
 curl_setopt_array($request, [
-    CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/product_feature_values?display=full&output_format=JSON",
+    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/product_feature_values?display=full&output_format=JSON",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -64,7 +64,7 @@ endif;
         <div class="leaf">
             <img src="<?= get_template_directory_uri(); ?>/img/top-leaf.svg" alt="Feuille de vigne">
         </div>
-        <?php $image_questionnaire = get_field('questionnaire_image'); ?>
+        <?php $image_questionnaire = get_field('image_questionnaire'); ?>
         <img src="<?= esc_url($image_questionnaire['url']); ?>" alt="<?= esc_attr($image_questionnaire['alt']); ?>" class="hero-banner-img" />
         <div class="container">
             <h1><?php the_title(); ?></h1>
@@ -187,7 +187,7 @@ endif;
                     allAnswers: false,
                     responseIsReady: false,
                     products: null,
-                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3',
+                    key: '38NVNEQDXT819RCEFZCR8MSYEDPHGGF4',
                     productsLink: [],
                     productMatchingValues: [],
                     noResponseTitle: null,
@@ -299,10 +299,10 @@ endif;
                     this.products = tempArray;
                 },
                 setUrl(product) {
-                    return `https://leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
+                    return `https://leshop.chezolympe.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 },
                 setProductLink(product) {
-                    return `https://leshop-chezolympe.btg-dev.com/${product.id}-${product.link_rewrite}.html`
+                    return `https://leshop.chezolympe.com/${product.id}-${product.link_rewrite}.html`
                 }
             }
         }).mount('#questionnaire');

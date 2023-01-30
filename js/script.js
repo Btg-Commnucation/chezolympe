@@ -60,8 +60,9 @@ if (navMenu && clickMenu) {
 
 if (splideSelector) {
   new Splide(splideSelector, {
-    type: "loop",
-    perPage: 4,
+    updateOnMove: true,
+    type: "slide",
+    perPage: 2,
     arrows: false,
     perMove: 1,
     autoplay: true,

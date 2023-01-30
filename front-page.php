@@ -2,7 +2,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3@leshop-chezolympe.btg-dev.com/api/products?display=full&output_format=JSON",
+    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/products?display=full&output_format=JSON",
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -53,7 +53,7 @@ get_header(); ?>
                 return {
                     data: null,
                     frontPageProducts: [],
-                    key: 'WR19W8DUK6YKMJGYZU9UGHI8TDYWBJM3',
+                    key: '38NVNEQDXT819RCEFZCR8MSYEDPHGGF4',
                     isLoading: true
                 }
             },
@@ -87,13 +87,13 @@ get_header(); ?>
                 },
                 setProductLink(product) {
                     if (product.product_type === "combinations" && product.associations.combinations) {
-                        return `https://leshop-chezolympe.btg-dev.com/accueil/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
+                        return `https://leshop.chezolympe.com/accueil/${product.id}-${Number(product.associations.combinations[0].id)}-${product.link_rewrite}.html`
                     } else {
-                        return `https://leshop-chezolympe.btg-dev.com/accueil/${product.id}-${product.link_rewrite}.html`
+                        return `https://leshop.chezolympe.com/accueil/${product.id}-${product.link_rewrite}.html`
                     }
                 },
                 setImageUrl(product) {
-                    return `https://leshop-chezolympe.btg-dev.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
+                    return `https://leshop.chezolympe.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 }
             }
         }).mount('#front-page')

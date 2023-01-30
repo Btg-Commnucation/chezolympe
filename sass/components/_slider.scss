@@ -133,6 +133,16 @@
   }
 }
 
+.splide__list {
+  justify-content: center;
+  align-items: start;
+  gap: 10rem;
+
+  li {
+    width: fit-content !important;
+  }
+}
+
 .splide__pagination {
   position: relative !important;
   gap: 1.5rem;
