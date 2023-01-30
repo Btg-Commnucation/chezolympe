@@ -106,7 +106,7 @@ endif;
     <template v-if="!isLoading">
         <section class="question-part">
             <div class="container">
-                <h2 v-if="!allAnswers">Questionnaire</h2>
+                <!-- <h2 v-if="!allAnswers">Questionnaire</h2>
                 <h2 v-else="allAsnwsers && products.length > 0">{{ products.length > 0 ? 'Voici les produits qui semblent te correspondre' : noResponseTitle }}</h2>
                 <div class="questions-container" v-if="!allAnswers">
                     <div class="question" v-for="question in data.slice(sliceA, sliceB)">
@@ -158,6 +158,10 @@ endif;
                             </div>
                         </div>
                     </div>
+                </div> -->
+                <div class="temporary-result">
+                    <h2><?php the_field('prochainement_titre'); ?></h2>
+                    <p><?php the_field('prochainement_texte'); ?></p>
                 </div>
             </div>
         </section>

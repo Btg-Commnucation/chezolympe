@@ -21,7 +21,7 @@ if (get_field('token_instagram', 'option')) {
         <ul class="benefits-list">
             <li>
                 <img src="<?= get_template_directory_uri(); ?>/img/camion.svg" alt="Illustration d'un camion">
-                <p>Livraison rapide et gratuite dès 99€</p>
+                <p>Livraison rapide et gratuite dès 86€</p>
             </li>
             <li>
                 <img src="<?= get_template_directory_uri(); ?>/img/cb.svg" alt="Illustration d'une carte bleue">
