@@ -1,8 +1,9 @@
 <?php
+$token_prestashop = get_field('token_prestashop', 'option');
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/products?display=full&output_format=JSON",
+    CURLOPT_URL => 'https://leshop.chezolympe.com/api/products?ws_key=' . $token_prestashop  . '&display=full&output_format=JSON',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -53,7 +54,7 @@ get_header(); ?>
                 return {
                     data: null,
                     frontPageProducts: [],
-                    key: '38NVNEQDXT819RCEFZCR8MSYEDPHGGF4',
+                    key: null,
                     isLoading: true
                 }
             },
@@ -73,6 +74,7 @@ get_header(); ?>
             methods: {
                 getData() {
                     this.data = <?php echo json_encode($response); ?>;
+                    this.key = <?php echo json_encode($token_prestashop); ?>;
                     this.data = JSON.parse(this.data);
                     this.data.products.map(product => {
                         if (product.active === "1") {

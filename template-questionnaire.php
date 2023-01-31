@@ -4,11 +4,12 @@
 */
 
 get_header();
+$token_prestashop = get_field('token_prestashop', 'option');
 
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/products?display=full&output_format=JSON",
+    CURLOPT_URL => 'https://leshop.chezolympe.com/api/products?ws_key=' . $token_prestashop . '&display=full&output_format=JSON',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -21,7 +22,7 @@ curl_close($curl);
 $request = curl_init();
 
 curl_setopt_array($request, [
-    CURLOPT_URL => "https://38NVNEQDXT819RCEFZCR8MSYEDPHGGF4@leshop.chezolympe.com/api/product_feature_values?display=full&output_format=JSON",
+    CURLOPT_URL => 'https://leshop.chezolympe.com/api/product_feature_values?ws_key=' . $token_prestashop . '&display=full&output_format=JSON',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST => "GET",
 ]);
@@ -187,7 +188,7 @@ endif;
                     allAnswers: false,
                     responseIsReady: false,
                     products: null,
-                    key: '38NVNEQDXT819RCEFZCR8MSYEDPHGGF4',
+                    key: null,
                     productsLink: [],
                     productMatchingValues: [],
                     noResponseTitle: null,
@@ -204,6 +205,7 @@ endif;
                 },
                 async getData() {
                     this.data = <?= json_encode($question_list); ?>;
+                    this.key = <?= json_encode($token_prestashop); ?>;
                     this.apiResponse = <?= $response ? json_encode($response) : json_encode($err); ?>;
                     this.apiResponse = JSON.parse(this.apiResponse);
                     this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
