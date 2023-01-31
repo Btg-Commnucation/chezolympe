@@ -66,7 +66,9 @@ endif;
             <img src="<?= get_template_directory_uri(); ?>/img/top-leaf.svg" alt="Feuille de vigne">
         </div>
         <?php $image_questionnaire = get_field('image_questionnaire'); ?>
-        <img src="<?= esc_url($image_questionnaire['url']); ?>" alt="<?= esc_attr($image_questionnaire['alt']); ?>" class="hero-banner-img" />
+        <?php if ($image_questionnaire) : ?>
+            <img src="<?= esc_url($image_questionnaire['url']); ?>" alt="<?= esc_attr($image_questionnaire['alt']); ?>" class="hero-banner-img" />
+        <?php endif; ?>
         <div class="container">
             <h1><?php the_title(); ?></h1>
             <?php the_content(); ?>
@@ -107,7 +109,7 @@ endif;
     <template v-if="!isLoading">
         <section class="question-part">
             <div class="container">
-                <!-- <h2 v-if="!allAnswers">Questionnaire</h2>
+                <h2 v-if="!allAnswers">Questionnaire</h2>
                 <h2 v-else="allAsnwsers && products.length > 0">{{ products.length > 0 ? 'Voici les produits qui semblent te correspondre' : noResponseTitle }}</h2>
                 <div class="questions-container" v-if="!allAnswers">
                     <div class="question" v-for="question in data.slice(sliceA, sliceB)">
@@ -140,7 +142,8 @@ endif;
                                         <img :src="setUrl(product)" :alt="product.name">
                                     </a>
                                     <div class="product-content">
-                                        <h4><a :href="setProductLink(product)" target="_blank">{{ product.name }}</a></h4>
+                                        <h4 v-if="typeof product.name === 'object'"><a :href="setProductLink(product)" target="_blank">{{ product.name[0].value }}</a></h4>
+                                        <h4 v-else><a :href="setProductLink(product)" target="_blank">{{ product.name }}</a></h4>
                                     </div>
                                 </div>
                                 <strong class="product-price">{{product.price.slice(0, 5)}} €</strong>
@@ -159,10 +162,6 @@ endif;
                             </div>
                         </div>
                     </div>
-                </div> -->
-                <div class="temporary-result">
-                    <h2><?php the_field('prochainement_titre'); ?></h2>
-                    <p><?php the_field('prochainement_texte'); ?></p>
                 </div>
             </div>
         </section>
@@ -192,7 +191,7 @@ endif;
                     productsLink: [],
                     productMatchingValues: [],
                     noResponseTitle: null,
-                    newFeaturedValues: [],
+                    associationsProducts: [],
                 }
             },
             async mounted() {
@@ -210,13 +209,13 @@ endif;
                     this.apiResponse = JSON.parse(this.apiResponse);
                     this.featureValues = <?= $newResult ? json_encode($newResult) : json_encode($newErr); ?>;
                     this.featureValues = JSON.parse(this.featureValues);
-                    await this.setFeaturedValues();
                     this.noResponseTitle = <?= json_encode(get_field('titre_aucun_article')); ?>;
+                    await this.setAssociationsProducts();
                 },
-                setFeaturedValues() {
-                    this.featureValues.product_feature_values.map((item, index) => {
-                        if (item.value !== "Les points forts") {
-                            this.newFeaturedValues.push(item)
+                setAssociationsProducts() {
+                    this.apiResponse.products.map(element => {
+                        if (element.associations.product_features) {
+                            this.associationsProducts.push(element);
                         }
                     })
                 },
@@ -236,69 +235,22 @@ endif;
                     }
                 },
                 setListFeature() {
-                    let arrayIdValues = [];
-                    let arraySecond = [];
-                    for (const value of this.results) {
-                        for (const element of this.newFeaturedValues) {
-                            if (value.toLowerCase() === element.value.toLowerCase()) {
-                                arrayIdValues.push({
-                                    id: String(element.id),
-                                    name: element.value
-                                });
+                    this.results.map((item, index) => {
+                        this.featureValues.product_feature_values.map((element, index) => {
+                            if (item.toLowerCase() === element.value[0].value.toLowerCase() && this.productMatchingValues.length < 4) {
+                                this.productMatchingValues.push(element)
                             }
-                        }
-                    }
-
-
-                    arraySecond = arrayIdValues.filter(element => {
-                        return arrayIdValues.some(value => {
-                            return value.name.toLowerCase() !== element.name.toLowerCase()
                         })
                     })
-
-
-                    arraySecond = arraySecond.map(element => {
-                        return {
-                            id: String(null),
-                            name: element.name
-                        }
-                    })
-
-                    // arrayIdValues.filter(element => {
-                    //     console.log(element.name)
-                    //     for (const emptyValue of this.results) {
-                    //         if (element.name !== emptyValue) {
-                    //             return arraySecond.push({
-                    //                 id: String(null),
-                    //                 name: emptyValue
-                    //             })
-                    //         }
-                    //     }
-                    // })
-                    // for (const emptyValue of this.results) {
-                    //     // for (const idValues of arrayIdValues) {
-                    //     if (arrayIdValues.find(element => element.name.toLowerCase() !== emptyValue.toLowerCase())) {
-                    //         console.log(emptyValue)
-                    //         arraySecond.push({
-                    //             id: String(null),
-                    //             name: emptyValue
-                    //         })
-                    //     }
-                    //     // }
-                    // }
-                    this.productMatchingValues = arrayIdValues.concat(arraySecond);
                 },
                 setProducts() {
-                    let tempArray = [];
-                    for (const element of this.apiResponse.products) {
-                        if (element.associations.product_features) {
-                            if (this.productMatchingValues.every(value => element.associations.product_features.some(element => element.id_feature_value === value.id))) {
-                                tempArray.push(element);
-                            }
-
-                        }
-                    }
-                    this.products = tempArray;
+                    this.products = this.associationsProducts.filter(product =>
+                        product.associations.product_features.every(feature =>
+                            this.productMatchingValues.some(value =>
+                                Number(feature.id_feature_value) === Number(value.id) && Number(feature.id) === Number(value.id_feature)
+                            )
+                        )
+                    );
                 },
                 setUrl(product) {
                     return `https://leshop.chezolympe.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
