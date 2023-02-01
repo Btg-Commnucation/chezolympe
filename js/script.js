@@ -21,7 +21,10 @@ const mib = document.getElementById("mib");
 const mibEnding = document.getElementById("mib-ending");
 const popupLink = document.querySelectorAll(".popup-link");
 const popupBackground = document.querySelectorAll(".popup-background");
-const closePopup = document.getElementById("close-popup");
+const closePopup = document.querySelectorAll(
+  ".popup-background > .popup > .close-popup"
+);
+console.log(closePopup);
 const instagramContainer = document.getElementById("instagram-container");
 
 if (instagramContainer) {
@@ -75,6 +78,8 @@ if (splideSelector) {
         perPage: 2,
       },
       624: {
+        updateOnMove: false,
+        type: "loop",
         perPage: 1,
       },
     },
@@ -123,7 +128,7 @@ if (popupLink && popupBackground) {
   for (let i = 0; i < popupLink.length; i++) {
     popupLink[i].addEventListener("click", () => {
       popupBackground[i].classList.add("active");
-      closePopup.addEventListener("click", () => {
+      closePopup[i].addEventListener("click", () => {
         popupBackground[i].classList.remove("active");
       });
     });

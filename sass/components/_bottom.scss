@@ -48,6 +48,7 @@
 
     @include var.breakpoint(tablet) {
       grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr;
       gap: 0.2rem;
     }
 

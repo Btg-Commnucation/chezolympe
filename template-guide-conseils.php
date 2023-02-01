@@ -26,7 +26,7 @@ get_header();
                         <?php if (get_sub_field('contenu_popup')) : ?>
                             <div class="popup-background">
                                 <div class="popup">
-                                    <div id="close-popup">
+                                    <div class="close-popup">
                                         <img src="<?= get_template_directory_uri(); ?>/img/close-popup.svg" alt="Fermer le popup">
                                     </div>
                                     <?php the_sub_field('contenu_popup'); ?>

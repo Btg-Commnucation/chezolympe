@@ -237,11 +237,12 @@ endif;
                 setListFeature() {
                     this.results.map((item, index) => {
                         this.featureValues.product_feature_values.map((element, index) => {
-                            if (item.toLowerCase() === element.value[0].value.toLowerCase() && this.productMatchingValues.length < 4) {
+                            if (item.toLowerCase() === element.value[0].value.toLowerCase()) {
                                 this.productMatchingValues.push(element)
                             }
                         })
                     })
+                    this.productMatchingValues = [...new Set(this.productMatchingValues)];
                 },
                 setProducts() {
                     this.products = this.associationsProducts.filter(product =>
