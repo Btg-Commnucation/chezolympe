@@ -179,20 +179,34 @@
 
   form {
     margin-top: 4rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     row-gap: 1.3rem;
     width: 100%;
 
-    @include var.breakpoint(mini) {
-      grid-template-columns: 1fr;
+    .sib_msg_disp {
+      grid-row: 1;
+      grid-column: 1 / 3;
+
+      @include var.breakpoint(mini) {
+        grid-column: 1 / 1;
+      }
+    }
+
+    .sib_signup_box_inside_1 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 2.2rem;
+      row-gap: 1.3rem;
+      width: 100%;
     }
 
     label {
       width: 100%;
 
-      &.email-label {
+      &[for="email"] {
         grid-column: 1 / 3;
 
         @include var.breakpoint(mini) {

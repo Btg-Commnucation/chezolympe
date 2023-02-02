@@ -311,6 +311,14 @@
   margin: 0 auto;
   margin-bottom: 0.7rem;
 
+  @include var.breakpoint(879px) {
+    max-width: 95%;
+  }
+
+  @include var.breakpoint(mini) {
+    max-width: 100%;
+  }
+
   & > span {
     display: flex;
     justify-content: center;
@@ -328,6 +336,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @include var.breakpoint(680px) {
+      font-size: 1.4rem;
+    }
 
     &::after {
       content: "";
@@ -350,5 +362,9 @@
     font-weight: var.$light;
     font-family: var.$avenirLight;
     color: var.$gray;
+
+    @include var.breakpoint(680px) {
+      font-size: 1.4rem;
+    }
   }
 }
