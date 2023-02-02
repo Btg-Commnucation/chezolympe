@@ -12,7 +12,7 @@
                         <h4><a :href="setProductLink(product)" target="_blank">{{ typeof product.name === 'object' ? product.name[0].value : product.name  }}</a></h4>
                     </div>
                 </div>
-                <strong class="product-price" v-if="product.name.length > 0">{{product.price.slice(0, 5)}} €</strong>
+                <strong class="product-price" v-if="product.name.length > 0">{{showPrice(product)}} €</strong>
             </li>
         </ul>
         <?php $lien_shop = get_field('le_shop', 'option');

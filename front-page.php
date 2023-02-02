@@ -95,6 +95,27 @@ get_header(); ?>
                 },
                 setImageUrl(product) {
                     return `https://leshop.chezolympe.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
+                },
+                showPrice({
+                    price,
+                    id_tax_rules_group
+                }) {
+                    if (id_tax_rules_group === "1") {
+                        let priceTt = String(Number(price) * 1.2)
+                        // Si priceTt à plus de 2 chiffres après la virgule, fait un +1 sur deuxième chiffre après la virgule et n'affiche que 2 chiffre après la virgule
+                        if (priceTt.split('.')[1].length > 2) {
+                            return String(Number(priceTt) + 0.01).split('.')[0] + '.' + String(Number(priceTt) + 0.01).split('.')[1].slice(0, 2)
+                        } else {
+                            return priceTt.slice(0, 5);
+                        }
+                    } else {
+                        let priceTt = String(Number(price) * 1.055)
+                        if (priceTt.split('.')[1].length > 2) {
+                            return String(Number(priceTt) + 0.01).split('.')[0] + '.' + String(Number(priceTt) + 0.01).split('.')[1].slice(0, 2)
+                        } else {
+                            return priceTt.slice(0, 5);
+                        }
+                    }
                 }
             }
         }).mount('#front-page')
