@@ -257,7 +257,7 @@ endif;
                     return `https://leshop.chezolympe.com/api/images/products/${Number(product.id)}/${Number(product.id_default_image)}/?ws_key=${this.key}`;
                 },
                 setProductLink(product) {
-                    return `https://leshop.chezolympe.com/${product.id}-${product.link_rewrite}.html`
+                    return `https://leshop.chezolympe.com/${product.id}-${typeof product.link_rewrite === 'object' ? product.link_rewrite[0].value : product.link_rewrite}.html`
                 }
             }
         }).mount('#questionnaire');
