@@ -24,7 +24,6 @@ const popupBackground = document.querySelectorAll(".popup-background");
 const closePopup = document.querySelectorAll(
   ".popup-background > .popup > .close-popup"
 );
-console.log(closePopup);
 const instagramContainer = document.getElementById("instagram-container");
 
 if (instagramContainer) {
@@ -94,7 +93,6 @@ if (mulder && scully) {
       !mulder.classList.contains("vanish") &&
       !mulder.classList.contains("active")
     ) {
-      console.log(mib.classList);
       pageNotFound(mulder, scully, spaceShip, mulderScully);
     }
   });
