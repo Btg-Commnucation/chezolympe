@@ -69,7 +69,7 @@ json_encode($post_list);
                             <a :href="data.permalink" v-html='data.thumbnails' :title="data.title"></a>
                         </div>
                         <div class="post__content">
-                            <h5><a :href="data.permalink">{{data.title}}</a></h5>
+                            <h5><a :href="data.permalink" v-html="data.title"></a></h5>
                             <ul class="categories">
                                 <li v-for="category in data.categories">
                                     {{category.cat_name}}
@@ -91,7 +91,7 @@ json_encode($post_list);
                         <a :href="post.permalink" v-html="post.thumbnails" :title="post.title"></a>
                     </div>
                     <div class="post__text">
-                        <h4>{{post.title}}</h4>
+                        <h4 v-html="post.title"></h4>
                         <ul>
                             <li v-for="category in post.categories">{{category.name}}</li>
                         </ul>
