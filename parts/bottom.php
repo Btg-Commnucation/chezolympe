@@ -33,7 +33,7 @@ if (get_field('token_instagram', 'option')) {
             </li>
             <li>
                 <img src="<?= get_template_directory_uri(); ?>/img/check.svg" alt="Illustration d'une main check">
-                <p>Satisfaite ou remboursée</p>
+                <p>Marque engagée</p>
             </li>
         </ul>
     </div>

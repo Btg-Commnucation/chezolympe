@@ -70,10 +70,10 @@ if (splideSelector) {
     interval: 5000,
     breakpoints: {
       1320: {
-        perPage: 3,
+        perPage: 1,
       },
       1000: {
-        perPage: 2,
+        perPage: 1,
       },
       624: {
         updateOnMove: false,

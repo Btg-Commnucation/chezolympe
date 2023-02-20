@@ -35,7 +35,7 @@
                 )) ?>
             </section>
             <section class="instagram">
-                <?php $rs = wp_get_nav_menu_name("propos"); ?>
+                <?php $rs = wp_get_nav_menu_name("instagram"); ?>
                 <?= $rs ? '<h3>' . $rs . '</h3>' : '' ?>
                 <?php wp_nav_menu(array(
                     'theme_location' => 'instagram',

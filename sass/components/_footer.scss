@@ -3,6 +3,7 @@
 footer {
   background: var.$mediumOrange;
   padding-block: 2.9rem 2rem;
+  overflow: hidden;
 
   .container {
     display: flex;
@@ -21,6 +22,14 @@ footer {
   justify-content: space-between;
   align-items: start;
   width: 100%;
+
+  .instagram {
+    align-items: start;
+
+    #instagram {
+      margin-left: 1.5rem;
+    }
+  }
 
   @include var.breakpoint(tablet) {
     display: grid;

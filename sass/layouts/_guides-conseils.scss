@@ -5,6 +5,8 @@
     position: relative;
     background: transparent;
     padding: 6.3rem 3.4rem;
+    background: url("../img/guide-conseils.jpg") no-repeat center;
+    background-size: cover;
 
     .leaf {
       position: absolute;
@@ -22,13 +24,13 @@
     }
 
     h1 {
-      color: black;
+      color: white;
       text-align: center;
     }
 
     p {
       font-size: 1.8rem;
-      color: var.$gray;
+      color: white;
       font-weight: var.$light;
       font-family: var.$avenirLight;
       text-align: center;
