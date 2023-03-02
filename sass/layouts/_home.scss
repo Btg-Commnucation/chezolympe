@@ -267,6 +267,10 @@
   }
 }
 
+#quizz.quizz-container {
+  grid-column: 1 / 3;
+}
+
 #quizz.quizz-container .forminator-guttenberg {
   display: flex;
   flex-direction: column;
@@ -275,6 +279,10 @@
   height: 100%;
 
   .forminator-chart-legend {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1.6rem;
   }
 
   input {
