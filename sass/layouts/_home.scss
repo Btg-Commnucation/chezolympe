@@ -266,3 +266,59 @@
     }
   }
 }
+
+#quizz.quizz-container .forminator-guttenberg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  .forminator-chart-legend {
+  }
+
+  input {
+    width: 15px !important;
+    height: 15px !important;
+    overflow: auto !important;
+    white-space: initial !important;
+    margin: unset !important;
+    padding: unset !important;
+    border: unset !important;
+    clip: unset !important;
+    -webkit-clip-path: unset !important;
+    clip-path: unset !important;
+  }
+
+  .forminator-poll-header {
+    span {
+      font-size: 2.5rem;
+      font-weight: 700;
+      font-family: var.$avenirRegular;
+      margin-bottom: 0.8rem;
+      line-height: 1;
+      display: flow-root;
+      color: var.$mediumOrange;
+    }
+  }
+
+  button.forminator-button {
+    margin-top: 2rem;
+    background: transparent;
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: var.$avenirLight;
+    color: var.$gray;
+    border: 1px solid var.$gray;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+      background: var.$mediumOrange;
+      border-color: var.$mediumOrange;
+      color: white;
+      box-shadow: none;
+    }
+  }
+}

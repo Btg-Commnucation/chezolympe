@@ -9,9 +9,11 @@ class Post_single
 {
     public $title;
     public $excerpt;
+    public $content;
     public $categories;
     public $thumbnails;
     public $permalink;
+    public $isQuizz;
 }
 
 $post_list = [];
@@ -31,10 +33,12 @@ if ($query->have_posts()) :
 
         $post_object = new Post_single();
         $post_object->title = get_the_title();
+        $post_object->content = do_shortcode(get_the_content());
         $post_object->excerpt = get_the_excerpt();
         $post_object->categories = get_the_category();
         $post_object->thumbnails = get_the_post_thumbnail();
         $post_object->permalink = get_the_permalink();
+        $post_object->isQuizz = get_field('questionnaire');
 
         $post_list[] = $post_object;
     endwhile;
@@ -65,18 +69,19 @@ json_encode($post_list);
             </section>
             <section class="post__article">
                 <div class="post-home" v-for="(post, index) in filteredCategory.slice(a, b)" :index="index">
-                    <div class="post-home__image">
+                    <div class="post-home__image" v-if="post.isQuizz === 'non'">
                         <a :href="post.permalink" v-html="post.thumbnails"></a>
                     </div>
-                    <div class="post-home__content">
+                    <div class="post-home__content" v-if="post.isQuizz === 'non'">
                         <h2><a :href="post.permalink" v-html="post.title"></a></h2>
                         <ul class="post-home__categories">
                             <li v-for="(category, index) in post.categories" :index="index">
                                 {{category.name}}
                             </li>
                         </ul>
-                        <p>{{post.excerpt}}</p>
+                        <p v-if="post.isQuizz === 'non'">{{post.excerpt}}</p>
                     </div>
+                    <div id="quizz" class="quizz-container" v-if="post.isQuizz === 'oui'" v-html="post.content"></div>
                 </div>
             </section>
             <section class="pagination">
