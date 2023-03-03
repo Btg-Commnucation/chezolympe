@@ -283,6 +283,11 @@
     justify-content: center;
     align-items: start;
     gap: 1.6rem;
+
+    @include var.breakpoint(395px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   input {
@@ -306,8 +311,31 @@
       margin-bottom: 0.8rem;
       line-height: 1;
       display: flow-root;
+      text-align: center;
       color: var.$mediumOrange;
+
+      @include var.breakpoint(456px) {
+        font-size: 2rem;
+      }
+
+      @include var.breakpoint(355px) {
+        font-size: 1.8rem;
+      }
     }
+  }
+
+  .forminator-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .forminator-poll--actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   button.forminator-button {
