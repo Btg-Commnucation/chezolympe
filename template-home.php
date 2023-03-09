@@ -68,7 +68,7 @@ json_encode($post_list);
                 </ul>
             </section>
             <section class="post__article">
-                <div class="post-home" v-for="(post, index) in filteredCategory.slice(a, b)" :index="index">
+                <div :class="post.isQuizz === 'non' ? 'post-home' : 'post-home quizz-home'" v-for="(post, index) in filteredCategory.slice(a, b)" :index="index">
                     <div class="post-home__image" v-if="post.isQuizz === 'non'">
                         <a :href="post.permalink" v-html="post.thumbnails"></a>
                     </div>
