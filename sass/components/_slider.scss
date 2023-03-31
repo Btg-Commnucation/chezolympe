@@ -11,8 +11,8 @@
     right: -15%;
     top: -3%;
 
-    @include var.breakpoint(1328px) {
-      right: -23%;
+    @include var.breakpoint(1400px) {
+      right: -30%;
     }
 
     @include var.breakpoint(1194px) {

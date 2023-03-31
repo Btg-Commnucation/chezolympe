@@ -104,7 +104,7 @@ get_header(); ?>
                         let priceTt = String(Number(price) * 1.2)
                         // Si priceTt à plus de 2 chiffres après la virgule, fait un +1 sur deuxième chiffre après la virgule et n'affiche que 2 chiffre après la virgule
                         if (priceTt.split('.')[1].length > 2) {
-                            const price = Number(priceTt) + 0.01;
+                            const price = Number(priceTt);
                             const priceString = price.toFixed(2); // convertit le nombre en chaîne avec deux chiffres après la virgule
                             const priceArray = priceString.split('.'); // sépare la chaîne en un tableau de deux éléments
                             const firstPart = priceArray[0];
@@ -120,7 +120,7 @@ get_header(); ?>
                     } else {
                         let priceTt = String(Number(price) * 1.055)
                         if (priceTt.split('.')[1].length > 2) {
-                            const price = Number(priceTt) + 0.01;
+                            const price = Number(priceTt);
                             const priceString = price.toFixed(2); // convertit le nombre en chaîne avec deux chiffres après la virgule
                             const priceArray = priceString.split('.'); // sépare la chaîne en un tableau de deux éléments
                             const firstPart = priceArray[0];
