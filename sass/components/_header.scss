@@ -186,8 +186,8 @@ header {
     li:last-of-type {
       margin-right: 8rem;
 
-      @include var.breakpoint(1184px) {
-        margin-right: 4rem;
+      @include var.breakpoint(1450px) {
+        margin-right: 0;
       }
     }
   }
@@ -225,7 +225,7 @@ header {
     li {
       a {
         color: var.$gray;
-        font-size: 2.2rem;
+        font-size: calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320)));
         font-weight: 400;
         font-family: var.$gallery;
         text-decoration: none;
@@ -240,7 +240,11 @@ header {
     li:first-of-type {
       margin-left: 8rem;
 
-      @include var.breakpoint(1184px) {
+      @include var.breakpoint(1450px) {
+        margin-left: 0;
+      }
+
+      @include var.breakpoint(1357px) {
         margin-left: 4rem;
       }
     }
