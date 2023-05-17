@@ -104,19 +104,23 @@ get_header(); ?>
                     if (id_tax_rules_group === "1") {
                         let priceTt = String(Number(price) * 1.2)
                         // Si priceTt à plus de 2 chiffres après la virgule, fait un +1 sur deuxième chiffre après la virgule et n'affiche que 2 chiffre après la virgule
-                        if (priceTt.split('.')[1].length > 2) {
-                            const price = Number(priceTt);
-                            const priceString = price.toFixed(2); // convertit le nombre en chaîne avec deux chiffres après la virgule
-                            const priceArray = priceString.split('.'); // sépare la chaîne en un tableau de deux éléments
-                            const firstPart = priceArray[0];
-                            const secondPart = priceArray[1] || '0';
-                            return `${firstPart}.${secondPart.slice(0, 2)}`;
-                        } else {
-                            const result = priceTt.slice(0, 5);
-                            if (result.length < 5) {
-                                return result + '0'
+                        if (priceTt.split('.').length > 1) {
+                            if (priceTt.split('.')[1].length > 2) {
+                                const price = Number(priceTt);
+                                const priceString = price.toFixed(2); // convertit le nombre en chaîne avec deux chiffres après la virgule
+                                const priceArray = priceString.split('.'); // sépare la chaîne en un tableau de deux éléments
+                                const firstPart = priceArray[0];
+                                const secondPart = priceArray[1] || '0';
+                                return `${firstPart}.${secondPart.slice(0, 2)}`;
+                            } else {
+                                const result = priceTt.slice(0, 5);
+                                if (result.length < 5) {
+                                    return result + '0'
+                                }
+                                return result
                             }
-                            return result
+                        } else {
+                            return priceTt
                         }
                     } else {
                         let priceTt = String(Number(price) * 1.055)
