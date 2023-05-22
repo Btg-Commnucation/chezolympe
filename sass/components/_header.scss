@@ -156,6 +156,10 @@ header {
     align-items: center;
     gap: 8.4rem;
 
+    @include var.breakpoint(1600px) {
+      gap: 6.4rem;
+    }
+
     @include var.breakpoint(1184px) {
       gap: 4.4rem;
     }
