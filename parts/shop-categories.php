@@ -1,7 +1,7 @@
 <section id="shop-categories">
     <div class="container-narrow">
         <h2><?php the_field('titre_categories'); ?></h2>
-        <p><?php the_field('texte_categories') ?></p>
+        <div><?php the_field('texte_categories') ?></div>
         <?php if (have_rows('categories')) : ?>
             <ul class="categories-container">
                 <?php while (have_rows('categories')) : the_row();

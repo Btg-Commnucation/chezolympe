@@ -3,7 +3,7 @@
         <img src="<?= get_template_directory_uri(); ?>/img/leaf-rotate.svg" alt="Feuille retournée" class="feuille-top">
         <img src="<?= get_template_directory_uri(); ?>/img/leaf-bottom-slider.svg" alt="Feuille retournée" class="feuille-bottom">
         <h3><?php the_field('titre_slider'); ?></h3>
-        <p><?php the_field('texte_slider'); ?></p>
+        <div><?php the_field('texte_slider'); ?></div>
         <?php if (have_rows('slider')) : ?>
             <div class="splide">
                 <div class="splide__track">
