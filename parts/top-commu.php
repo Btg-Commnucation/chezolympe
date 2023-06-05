@@ -1,7 +1,7 @@
 <section id="top-commu" v-if="!isLoading">
     <div class="container">
         <h2><?php the_field('titre_top_communaute'); ?></h2>
-        <p><?php the_field('texte_top_communaute'); ?></p>
+        <div><?php the_field('texte_top_communaute'); ?></div>
         <ul class="product-list">
             <li v-for="product in filteredPorduct" :index="product.id">
                 <div class="product-container" v-if="product.name.length > 0">
