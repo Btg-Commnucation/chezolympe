@@ -5,6 +5,7 @@
     'order' => 'ASC'
 );
 
+
 $query = new WP_Query($args);
 
 if ($query->have_posts()) :
@@ -12,7 +13,7 @@ if ($query->have_posts()) :
     <section class="posts">
         <div class="container">
             <h2><?php the_field('titre_news'); ?></h2>
-            <p><?php the_field('texte_news'); ?></p>
+            <div><?php the_field('texte_news'); ?></div>
             <?php $lien_blog = get_field('le_blog', 'option');
             $lien_blog_target = $lien_blog['target'] ? $lien_blog['target'] : '_self';
             ?>
