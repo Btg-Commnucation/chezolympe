@@ -19,7 +19,7 @@
                             <?php endif; ?>
                             <span><?= esc_html($lien['title']); ?></span>
                         </a>
-                        <?php if (get_sub_filed('texte')) : ?>
+                        <?php if (get_sub_field('texte')) : ?>
                             <div class="category__text">
                                 <?php the_sub_field('texte'); ?>
                             </div>
