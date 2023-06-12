@@ -202,6 +202,8 @@ body.no-scroll {
 
       @include var.breakpoint(839px) {
         height: 100%;
+        object-fit: cover;
+        object-position: top center;
       }
     }
   }
