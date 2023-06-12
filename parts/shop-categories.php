@@ -19,6 +19,9 @@
                             <?php endif; ?>
                             <span><?= esc_html($lien['title']); ?></span>
                         </a>
+                        <div class="category__text">
+                            <?php the_sub_field('texte'); ?>
+                        </div>
                     </li>
                 <?php endwhile; ?>
             </ul>
