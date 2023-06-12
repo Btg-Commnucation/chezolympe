@@ -35,7 +35,7 @@
     width: 100%;
     margin: 0 !important;
     display: grid;
-    grid-template-columns: repeat(5, 133px);
+    grid-template-columns: repeat(5, 233px);
     column-gap: 7rem;
     place-content: center;
 
@@ -44,16 +44,16 @@
     }
 
     @include var.breakpoint(794px) {
-      grid-template-columns: repeat(4, 133px);
+      grid-template-columns: repeat(3, 233px);
       gap: 2.5rem;
     }
 
     @include var.breakpoint(638px) {
-      grid-template-columns: repeat(3, 133px);
+      grid-template-columns: repeat(2, 233px);
     }
 
     @include var.breakpoint(mini) {
-      grid-template-columns: repeat(2, 133px);
+      grid-template-columns: 233px;
     }
   }
 
