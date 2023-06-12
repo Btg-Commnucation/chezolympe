@@ -39,21 +39,57 @@
     column-gap: 7rem;
     place-content: center;
 
-    @include var.breakpoint(tablet) {
-      column-gap: 2.5rem;
+    @include var.breakpoint(1485px) {
+      grid-template-columns: repeat(4, 233px);
+
+      li:last-of-type {
+        grid-column: 1 / 5;
+      }
     }
 
-    @include var.breakpoint(794px) {
+    @include var.breakpoint(1143px) {
       grid-template-columns: repeat(3, 233px);
       gap: 2.5rem;
+
+      li:nth-last-of-type(1) {
+        grid-column: 1 / 3;
+        width: 50%;
+        margin-inline: auto;
+        grid-row: 2;
+      }
+
+      li:last-of-type {
+        grid-column: 2 / 4;
+        width: 50%;
+        margin-inline: auto;
+        grid-row: 2;
+      }
     }
 
-    @include var.breakpoint(638px) {
+    @include var.breakpoint(743px) {
       grid-template-columns: repeat(2, 233px);
+
+      li:nth-last-of-type(1) {
+        grid-column: auto;
+        width: 100%;
+        margin-inline: auto;
+        grid-row: auto;
+      }
+
+      li:last-of-type {
+        grid-column: 1 / 3;
+        width: 100%;
+        margin-inline: auto;
+        grid-row: auto;
+      }
     }
 
     @include var.breakpoint(mini) {
       grid-template-columns: 233px;
+
+      li:last-of-type {
+        grid-column: 1;
+      }
     }
   }
 
