@@ -60,29 +60,29 @@ if (navMenu && clickMenu) {
   });
 }
 
-if (splideSelector) {
-  new Splide(splideSelector, {
-    type: "slide",
-    perPage: 1,
-    arrows: false,
-    perMove: 1,
-    autoplay: true,
-    interval: 5000,
-    breakpoints: {
-      1320: {
-        perPage: 1,
-      },
-      1000: {
-        perPage: 1,
-      },
-      624: {
-        updateOnMove: false,
-        type: "loop",
-        perPage: 1,
-      },
-    },
-  }).mount();
-}
+// if (splideSelector) {
+//   new Splide(splideSelector, {
+//     type: "slide",
+//     perPage: 1,
+//     arrows: false,
+//     perMove: 1,
+//     autoplay: true,
+//     interval: 5000,
+//     breakpoints: {
+//       1320: {
+//         perPage: 1,
+//       },
+//       1000: {
+//         perPage: 1,
+//       },
+//       624: {
+//         updateOnMove: false,
+//         type: "loop",
+//         perPage: 1,
+//       },
+//     },
+//   }).mount();
+// }
 
 if (mulder && scully) {
   mulder.addEventListener("click", () => {
