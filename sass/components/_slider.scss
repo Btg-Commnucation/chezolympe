@@ -55,7 +55,8 @@
     font-weight: var.$light;
     font-family: var.$avenirLight;
     text-align: center;
-    @include var.breakpoint(1195px) {
+
+    @media screen and (max-width: 1195px) {
       max-width: 67%;
       margin-inline: auto;
     }
@@ -75,7 +76,7 @@
     gap: 2em;
     place-items: center;
 
-    @include var.breakpoint(1195px) {
+    @media screen and (max-width: 1195px) {
       grid-template-columns: repeat(2, max-content);
     }
   }
