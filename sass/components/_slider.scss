@@ -50,9 +50,10 @@
   }
 
   .text__slider {
-    @include var.breakpoint(1195px) {
-      max-width: 67%;
-      margin-inline: auto;
+    max-width: 67%;
+    margin-inline: auto;
+    @include var.breakpoint(1194px) {
+      max-width: 100%;
     }
   }
 
@@ -72,14 +73,14 @@
 
   &__list {
     display: grid;
-    grid-template-columns: max-content;
+    grid-template-columns: repeat(2, max-content);
     margin: 0 auto !important;
     width: fit-content;
     gap: 2em;
     place-items: center;
 
-    @include var.breakpoint(1195px) {
-      grid-template-columns: repeat(2, max-content);
+    @include var.breakpoint(1194px) {
+      grid-template-columns: max-content;
     }
   }
 
