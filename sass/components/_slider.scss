@@ -49,27 +49,36 @@
     text-align: center;
   }
 
-  div {
-    margin-inline: auto;
-
-    @include var.breakpoint(1195px) {
-      max-width: 67%;
-      margin-inline: auto;
-    }
-  }
-
   p {
     color: white;
     font-size: 1.8rem;
     font-weight: var.$light;
     font-family: var.$avenirLight;
     text-align: center;
+    @include var.breakpoint(1195px) {
+      max-width: 67%;
+      margin-inline: auto;
+    }
   }
 }
 
 .splide {
   margin-top: 2.9rem;
   width: 100%;
+  visibility: visible !important;
+
+  &__list {
+    display: grid;
+    grid-template-columns: max-content;
+    margin: 0 auto !important;
+    width: fit-content;
+    gap: 2em;
+    place-items: center;
+
+    @include var.breakpoint(1195px) {
+      grid-template-columns: repeat(2, max-content);
+    }
+  }
 
   .splide__pagination {
     margin-top: 3rem;
