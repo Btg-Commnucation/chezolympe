@@ -49,17 +49,19 @@
     text-align: center;
   }
 
+  .text__slider {
+    @include var.breakpoint(1195px) {
+      max-width: 67%;
+      margin-inline: auto;
+    }
+  }
+
   p {
     color: white;
     font-size: 1.8rem;
     font-weight: var.$light;
     font-family: var.$avenirLight;
     text-align: center;
-
-    @include var.breakpoint(1195px) {
-      max-width: 67%;
-      margin-inline: auto;
-    }
   }
 }
 
