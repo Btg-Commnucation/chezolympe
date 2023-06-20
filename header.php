@@ -67,6 +67,16 @@
                                 </div>
                             </form>
                         </li>
+                        <li class="shop-nav-link">
+                            <a href="https://leshop.chezolympe.com/fr/mon-compte">
+                                <strong class="screen-reader-text">Se rendre sur la page Mon compte</strong>
+                                <img src="<?= get_template_directory_uri(); ?>/img/mon-compte.svg" alt="Image d'un personnage">
+                            </a>
+                            <a href="https://leshop.chezolympe.com/fr/panier?action=show">
+                                <strong class="screen-reader-text">Se rendre sur la page Mon panier</strong>
+                                <img src="<?= get_template_directory_uri(); ?>/img/panier.svg" alt="Image d'un panier">
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             <?php endif; ?>
@@ -110,6 +120,16 @@
                                     </button>
                                 </div>
                             </form>
+                        </li>
+                        <li class="shop-nav-link">
+                            <a href="https://leshop.chezolympe.com/fr/mon-compte">
+                                <strong class="screen-reader-text">Se rendre sur la page Mon compte</strong>
+                                <img src="<?= get_template_directory_uri(); ?>/img/mon-compte.svg" alt="Image d'un personnage">
+                            </a>
+                            <a href="https://leshop.chezolympe.com/fr/panier?action=show">
+                                <strong class="screen-reader-text">Se rendre sur la page Mon panier</strong>
+                                <img src="<?= get_template_directory_uri(); ?>/img/panier.svg" alt="Image d'un panier">
+                            </a>
                         </li>
                     </ul>
                 </nav>

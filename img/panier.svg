@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36.015" height="36.017" viewBox="0 0 36.015 36.017">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_103" data-name="Rectangle 103" width="36.015" height="36.017" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Groupe_508" data-name="Groupe 508" transform="translate(0 0)">
+    <g id="Groupe_507" data-name="Groupe 507" transform="translate(0 0)" clip-path="url(#clip-path)">
+      <path id="Tracé_576" data-name="Tracé 576" d="M34.7,8.786H27.538L22.653.643A1.318,1.318,0,0,0,20.242,1a1.33,1.33,0,0,0,.149,1l4.074,6.79H11.549L15.625,2A1.321,1.321,0,0,0,15.174.19a1.316,1.316,0,0,0-1.81.453L8.477,8.786H1.318A1.318,1.318,0,0,0,0,10.1v5.27a1.318,1.318,0,0,0,1.318,1.318H2.11L7.967,35.1a1.311,1.311,0,0,0,1.256.919H26.792a1.312,1.312,0,0,0,1.256-.917L33.9,16.692H34.7a1.319,1.319,0,0,0,1.318-1.318V10.1A1.319,1.319,0,0,0,34.7,8.786m-3.556,7.906-5.314,16.69H10.188L4.877,16.692Zm2.238-2.635H2.635V11.421H33.38Z" transform="translate(0 0)" fill="#fff"/>
+      <path id="Tracé_577" data-name="Tracé 577" d="M8.318,15.636H17.1A1.318,1.318,0,1,0,17.1,13H8.318a1.318,1.318,0,1,0,0,2.635" transform="translate(5.298 9.839)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

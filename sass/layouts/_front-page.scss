@@ -199,6 +199,7 @@ body.no-scroll {
 
     img {
       width: 100%;
+      height: 100%;
 
       @include var.breakpoint(839px) {
         height: 100%;
