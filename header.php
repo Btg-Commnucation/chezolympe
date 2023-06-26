@@ -54,19 +54,6 @@
                                 <a href="<?= esc_url($lien_droite['url']); ?>" target="<?= esc_attr($target) ?>"><?= esc_html($lien_droite['title']); ?></a>
                             </li>
                         <?php endwhile; ?>
-                        <li class="search-container">
-                            <form role="search" method="get" id="search-header" class="search-form" action="<?php echo home_url('/'); ?>">
-                                <label id="search-label">
-                                    <span class="screen-reader-text">Rechercher</span>
-                                    <input type="search" class="search-field" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x('Search for:', 'label') ?>" />
-                                </label>
-                                <div class="submit-container">
-                                    <button type="submit" id="search-submit">
-                                        <img src="<?= get_template_directory_uri(); ?>/img/search-icons.svg" alt="Rechercher sur la site">
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
                         <li class="shop-nav-link">
                             <a href="https://leshop.chezolympe.com/fr/mon-compte">
                                 <strong class="screen-reader-text">Se rendre sur la page Mon compte</strong>
@@ -108,19 +95,6 @@
                                 </li>
                         <?php endwhile;
                         endif; ?>
-                        <li class="search-container">
-                            <form role="search" method="get" id="search-header" class="search-form" action="<?php echo home_url('/'); ?>">
-                                <label id="search-label">
-                                    <span class="screen-reader-text">Rechercher</span>
-                                    <input type="search" class="search-field" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x('Search for:', 'label') ?>" />
-                                </label>
-                                <div class="submit-container">
-                                    <button type="submit" id="search-submit">
-                                        <img src="<?= get_template_directory_uri(); ?>/img/search-icons.svg" alt="Rechercher sur la site">
-                                    </button>
-                                </div>
-                            </form>
-                        </li>
                         <li class="shop-nav-link">
                             <a href="https://leshop.chezolympe.com/fr/mon-compte">
                                 <strong class="screen-reader-text">Se rendre sur la page Mon compte</strong>

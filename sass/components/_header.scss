@@ -14,11 +14,11 @@ header {
     }
 
     @include var.breakpoint(1324px) {
-      grid-template-columns: 0.8fr 160px 1fr;
+      grid-template-columns: 0.8fr 212px 1fr;
     }
 
     @include var.breakpoint(1230px) {
-      grid-template-columns: 1fr 160px 1fr;
+      grid-template-columns: 1fr 212px 1fr;
     }
 
     @include var.breakpoint(mini) {
@@ -222,10 +222,11 @@ header {
 
   ul {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 8.4rem;
     position: relative;
+    width: 100%;
 
     @include var.breakpoint(1750px) {
       gap: 4.4rem;
@@ -251,7 +252,7 @@ header {
     }
 
     li:first-of-type {
-      margin-left: 8rem;
+      margin-left: 5rem;
 
       @include var.breakpoint(1495px) {
         margin-left: 1rem;
@@ -422,13 +423,9 @@ header {
   position: absolute;
   width: fit-content;
   height: fit-content;
-  right: -11em;
+  right: 1.5em;
   top: -2.5em;
   gap: 0.6rem;
-
-  @include var.breakpoint(1750px) {
-    right: -10em;
-  }
 
   @include var.breakpoint(1230px) {
     position: initial;
