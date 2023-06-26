@@ -10,11 +10,11 @@ header {
     align-items: start;
 
     @include var.breakpoint(1495px) {
-      grid-template-columns: 0.8fr 212px 1fr;
+      grid-template-columns: 1fr 212px 1fr;
     }
 
     @include var.breakpoint(1324px) {
-      grid-template-columns: 0.8fr 212px 1fr;
+      grid-template-columns: 1fr 212px 1fr;
     }
 
     @include var.breakpoint(1230px) {
