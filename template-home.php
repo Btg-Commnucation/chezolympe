@@ -21,7 +21,6 @@ $post_list = [];
 $args = array(
     'post_type' => 'post',
     'post_per_page' => -1,
-    'orderby' => 'title',
     'order' => 'DESC'
 );
 
