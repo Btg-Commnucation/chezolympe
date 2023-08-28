@@ -85,7 +85,7 @@ json_encode($post_list);
         <div class="container">
             <h3>Vous aimerez aussi :</h3>
             <div class="post-same">
-                <div class="post-content__post-same" v-for="post in alsoLike.slice(0, 4)">
+                <div class="post-content__post-same" v-for="post in alsoLike.slice(0, 3)">
                     <div class="img__post">
                         <a :href="post.permalink" v-html="post.thumbnails" :title="post.title"></a>
                     </div>
