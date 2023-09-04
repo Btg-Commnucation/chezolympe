@@ -237,7 +237,7 @@ endif;
                 setListFeature() {
                     this.results.map((item, index) => {
                         this.featureValues.product_feature_values.map((element, index) => {
-                            if (item.toLowerCase() === element.value[0].value.toLowerCase()) {
+                            if (item.toLowerCase() === element.value.toLowerCase()) {
                                 this.productMatchingValues.push(element)
                             }
                         })
