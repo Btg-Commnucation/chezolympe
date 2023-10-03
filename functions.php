@@ -1,4 +1,5 @@
 <?php
+
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 
@@ -73,3 +74,17 @@ function my_wp_nav_menu_objects($items, $args)
     // return
     return $items;
 }
+
+function limits_access_by_ip()
+{
+    $adressIPAutorisee = '192.168.1.100';
+
+    if ($_SERVER['REMOTE_ADDR'] !== $adressIPAutorisee) {
+        header("HTTP/1.1 403 FOrbidden");
+        echo "<h1>Accès interdit</h1>";
+        echo "<p>Ce site est définitivement fermé. Merci de votre fidélité</p>";
+        exit;
+    }
+}
+
+add_action('init', 'limits_access_by_ip');
